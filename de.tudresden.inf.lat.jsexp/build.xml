@@ -38,6 +38,7 @@
 	<property name="_prjlib.path" value="${dist.path}/lib" />
 	<property name="_test.bin.path" value="${dist.path}/test" />
 	<property name="_test.report.path" value="${dist.path}/report" />
+	<property name="_zipfile.path" value="${basedir}/../${ant.project.name}-${version_id}.${build.number}.zip" />
 	<property name="_debuglevel" value="lines,vars,source" />
 
 	<path id="libs.path">
@@ -87,9 +88,15 @@
 		<jar destfile="${_prjlib.path}/${ant.project.name}-${version_id}.jar" basedir="${_main.bin.path}" manifest="${_manifest.path}" />
 	</target>
 
+	<target name="zip">
+		<delete file="${_zipfile.path}" />
+		<zip destfile="${_zipfile.path}" basedir="${basedir}" />
+	</target>
+
 	<target name="dist" depends="clean, build, javadoc, jar, test">
 		<buildnumber />
 	</target>
 
 </project>
+
 
