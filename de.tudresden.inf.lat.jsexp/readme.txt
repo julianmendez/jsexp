@@ -21,8 +21,8 @@ jsexp
 
 
 For more details about the license, please read the following files:
-   * copying : text of General Public License
-   * copying.lesser : text of Lesser General Public License
+   * copying.txt : text of General Public License
+   * copying-lesser.txt : text of Lesser General Public License
 
 
 
