@@ -25,7 +25,6 @@
 
 	<property file="build.number" />
 
-	<!--property name="version_id" value="0.0.1.0" /-->
 	<property name="dist.path" value="${basedir}/dist" />
 
 	<property name="_src.doc.path" value="src/doc" />
@@ -49,10 +48,12 @@
 		<include name="**/*Test.java" />
 	</patternset>
 
+	<!-- Cleans the generated documents and compiled code. -->
 	<target name="clean">
 		<delete dir="${dist.path}" />
 	</target>
 
+	<!-- Compiles all the source code. -->
 	<target name="build">
 		<mkdir dir="${_jarlib.path}" />
 		<mkdir dir="${_main.bin.path}" />
@@ -61,6 +62,7 @@
 		<javac srcdir="${_src.test.path}" destdir="${_test.bin.path}" classpath="${_main.bin.path}" classpathref="libs.path" debug="on" debuglevel="${_debuglevel}" />
 	</target>
 
+	<!-- Runs the unit tests. -->
 	<target name="test" depends="build">
 		<mkdir dir="${_test.report.path}" />
 		<junit printsummary="on" haltonfailure="yes" fork="yes">
@@ -78,23 +80,27 @@
 		</junit>
 	</target>
 
+	<!-- Creates the javadoc for the entire project. -->
 	<target name="javadoc">
 		<mkdir dir="${_javadoc.path}" />
 		<javadoc packagenames="*" sourcepath="${_src.doc.path}:${_src.main.path}" destdir="${_javadoc.path}" version="true" use="true" windowtitle="${ant.project.name}" overview="${_src.doc.path}/overview.html" classpathref="libs.path" access="package" />
 	</target>
 
+	<!-- Creates a jar with version number. -->
 	<target name="jar" depends="build">
 		<mkdir dir="${_prjlib.path}" />
 		<jar destfile="${_prjlib.path}/${ant.project.name}-${version_id}.jar" basedir="${_main.bin.path}" manifest="${_manifest.path}" />
 	</target>
 
+	<!-- Creates a zip file containing everything. -->
 	<target name="zip">
 		<delete file="${_zipfile.path}" />
 		<zip destfile="${_zipfile.path}" basedir="${basedir}" />
 	</target>
 
+	<!-- Executes all the main tasks. -->
 	<target name="dist" depends="clean, build, javadoc, jar, test">
-		<buildnumber />
+		<!--buildnumber /-->
 	</target>
 
 </project>
