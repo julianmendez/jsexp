@@ -23,25 +23,29 @@
  *
 -->
 
-	<property file="build.number" />
+	<property name="project.groupId" value="jsexp" />
+	<property name="project.artifactId" value="jsexp" />
 
-	<property name="dist.path" value="${basedir}/dist" />
+	<property file="version.properties" />
 
-	<property name="_src.doc.path" value="src/doc" />
-	<property name="_src.main.path" value="src/main" />
-	<property name="_src.test.path" value="src/test" />
-	<property name="_manifest.path" value="src/manifest/MANIFEST.MF" />
-	<property name="_jarlib.path" value="lib" />
-	<property name="_javadoc.path" value="${dist.path}/javadoc" />
-	<property name="_main.bin.path" value="${dist.path}/bin" />
-	<property name="_prjlib.path" value="${dist.path}/lib" />
-	<property name="_test.bin.path" value="${dist.path}/test" />
-	<property name="_test.report.path" value="${dist.path}/report" />
-	<property name="_zipfile.path" value="${basedir}/../${ant.project.name}-${version_id}.${build.number}.zip" />
+	<property name="project.build.directory" value="${basedir}/target" />
+	<property name="src.directory" value="src" />
+
+	<property name="_src.javadoc.directory" value="${src.directory}/main/javadoc" />
+	<property name="project.build.sourceDirectory" value="${src.directory}/main/java" />
+	<property name="project.build.testSourceDirectory" value="${src.directory}/test/java" />
+	<property name="_manifest.directory" value="${src.directory}/main/manifest/MANIFEST.MF" />
+	<property name="_jarlib.directory" value="lib" />
+	<property name="_javadoc.directory" value="${project.build.directory}/javadoc" />
+	<property name="project.build.outputDirectory" value="${project.build.directory}/classes" />
+	<property name="_prjlib.directory" value="${project.build.directory}/lib" />
+	<property name="_test.bin.directory" value="${project.build.directory}/test" />
+	<property name="_test.report.directory" value="${project.build.directory}/report" />
+	<property name="_zipfile.directory" value="${basedir}/../$[project.groupdId}-${project.artifactId}-${project.version}.${build.number}.zip" />
 	<property name="_debuglevel" value="lines,vars,source" />
 
-	<path id="libs.path">
-		<fileset dir="${_jarlib.path}" />
+	<path id="libs.directory">
+		<fileset dir="${_jarlib.directory}" />
 	</path>
 
 	<patternset id="testclasses.patternset">
@@ -50,30 +54,30 @@
 
 	<!-- Cleans the generated documents and compiled code. -->
 	<target name="clean">
-		<delete dir="${dist.path}" />
+		<delete dir="${project.build.directory}" />
 	</target>
 
 	<!-- Compiles all the source code. -->
 	<target name="build">
-		<mkdir dir="${_jarlib.path}" />
-		<mkdir dir="${_main.bin.path}" />
-		<javac srcdir="${_src.main.path}" destdir="${_main.bin.path}" classpathref="libs.path" debug="on" debuglevel="${_debuglevel}" />
-		<mkdir dir="${_test.bin.path}" />
-		<javac srcdir="${_src.test.path}" destdir="${_test.bin.path}" classpath="${_main.bin.path}" classpathref="libs.path" debug="on" debuglevel="${_debuglevel}" />
+		<mkdir dir="${_jarlib.directory}" />
+		<mkdir dir="${project.build.outputDirectory}" />
+		<javac srcdir="${project.build.sourceDirectory}" destdir="${project.build.outputDirectory}" classpathref="libs.directory" debug="on" debuglevel="${_debuglevel}" />
+		<mkdir dir="${_test.bin.directory}" />
+		<javac srcdir="${project.build.testSourceDirectory}" destdir="${_test.bin.directory}" classpath="${project.build.outputDirectory}" classpathref="libs.directory" debug="on" debuglevel="${_debuglevel}" />
 	</target>
 
 	<!-- Runs the unit tests. -->
 	<target name="test" depends="build">
-		<mkdir dir="${_test.report.path}" />
+		<mkdir dir="${_test.report.directory}" />
 		<junit printsummary="on" haltonfailure="yes" fork="yes">
 			<classpath>
-				<pathelement path="${_main.bin.path}" />
-				<pathelement path="${_test.bin.path}" />
-				<fileset dir="${_jarlib.path}" />
+				<pathelement path="${project.build.outputDirectory}" />
+				<pathelement path="${_test.bin.directory}" />
+				<fileset dir="${_jarlib.directory}" />
 			</classpath>
 			<formatter type="plain" usefile="on" />
-			<batchtest fork="yes" todir="${_test.report.path}">
-				<fileset dir="${_src.test.path}">
+			<batchtest fork="yes" todir="${_test.report.directory}">
+				<fileset dir="${project.build.testSourceDirectory}">
 					<patternset refid="testclasses.patternset" />
 				</fileset>
 			</batchtest>
@@ -82,25 +86,25 @@
 
 	<!-- Creates the javadoc for the entire project. -->
 	<target name="javadoc">
-		<mkdir dir="${_javadoc.path}" />
-		<javadoc packagenames="*" sourcepath="${_src.doc.path}:${_src.main.path}" destdir="${_javadoc.path}" version="true" use="true" windowtitle="${ant.project.name}" overview="${_src.doc.path}/overview.html" classpathref="libs.path" access="package" />
+		<mkdir dir="${_javadoc.directory}" />
+		<javadoc packagenames="*" sourcepath="${_src.javadoc.directory}:${project.build.sourceDirectory}" destdir="${_javadoc.directory}" version="true" use="true" windowtitle="${project.artifactId}" overview="${_src.javadoc.directory}/overview.html" classpathref="libs.directory" access="package" />
 	</target>
 
 	<!-- Creates a jar with version number. -->
 	<target name="jar" depends="build">
-		<mkdir dir="${_prjlib.path}" />
-		<jar destfile="${_prjlib.path}/${ant.project.name}-${version_id}.jar" basedir="${_main.bin.path}" manifest="${_manifest.path}" />
+		<mkdir dir="${_prjlib.directory}" />
+		<jar destfile="${_prjlib.directory}/${project.artifactId}-${project.version}.jar" basedir="${project.build.outputDirectory}" manifest="${_manifest.directory}" />
 	</target>
 
 	<!-- Creates a zip file containing everything. -->
 	<target name="zip">
-		<delete file="${_zipfile.path}" />
-		<zip destfile="${_zipfile.path}" basedir="${basedir}" />
+		<delete file="${_zipfile.directory}" />
+		<zip destfile="${_zipfile.directory}" basedir="${basedir}" />
 	</target>
 
 	<!-- Executes all the main tasks. -->
 	<target name="dist" depends="clean, build, javadoc, jar, test">
-		<!--buildnumber /-->
+		<!--buildnumber file="version.properties"/-->
 	</target>
 
 </project>
