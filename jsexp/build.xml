@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="jsexp" default="dist" basedir=".">
 
-<!--
+	<!--
  * Copyright 2009 Julian Mendez
  *
  *
@@ -34,12 +34,12 @@
 	<property name="_src.javadoc.directory" value="${src.directory}/main/javadoc" />
 	<property name="project.build.sourceDirectory" value="${src.directory}/main/java" />
 	<property name="project.build.testSourceDirectory" value="${src.directory}/test/java" />
-	<property name="_manifest.directory" value="${src.directory}/main/manifest/MANIFEST.MF" />
 	<property name="_jarlib.directory" value="lib" />
-	<property name="_javadoc.directory" value="${project.build.directory}/javadoc" />
+	<property name="_javadoc.directory" value="${project.build.directory}/site/apidocs" />
 	<property name="project.build.outputDirectory" value="${project.build.directory}/classes" />
-	<property name="_prjlib.directory" value="${project.build.directory}/lib" />
-	<property name="_test.bin.directory" value="${project.build.directory}/test" />
+	<property name="_prjlib.directory" value="${project.build.directory}" />
+	<property name="_srclib.directory" value="${project.build.directory}" />
+	<property name="project.build.testOutputDirectory" value="${project.build.directory}/test-classes" />
 	<property name="_test.report.directory" value="${project.build.directory}/report" />
 	<property name="_zipfile.directory" value="${basedir}/../$[project.groupdId}-${project.artifactId}-${project.version}.${build.number}.zip" />
 	<property name="_debuglevel" value="lines,vars,source" />
@@ -57,22 +57,33 @@
 		<delete dir="${project.build.directory}" />
 	</target>
 
+	<!-- Creates a jar with the source code. -->
+	<target name="source" depends="clean">
+		<mkdir dir="${_srclib.directory}" />
+		<jar destfile="${_srclib.directory}/${project.artifactId}-${project.version}-sources.jar" basedir="${basedir}">
+			<manifest>
+				<attribute name="Implementation-Title" value="${project.groupId}-${project.artifactId}" />
+				<attribute name="Implementation-Version" value="${project.version}" />
+			</manifest>
+		</jar>
+	</target>
+
 	<!-- Compiles all the source code. -->
-	<target name="build">
+	<target name="compile">
 		<mkdir dir="${_jarlib.directory}" />
 		<mkdir dir="${project.build.outputDirectory}" />
 		<javac srcdir="${project.build.sourceDirectory}" destdir="${project.build.outputDirectory}" classpathref="libs.directory" debug="on" debuglevel="${_debuglevel}" />
-		<mkdir dir="${_test.bin.directory}" />
-		<javac srcdir="${project.build.testSourceDirectory}" destdir="${_test.bin.directory}" classpath="${project.build.outputDirectory}" classpathref="libs.directory" debug="on" debuglevel="${_debuglevel}" />
+		<mkdir dir="${project.build.testOutputDirectory}" />
+		<javac srcdir="${project.build.testSourceDirectory}" destdir="${project.build.testOutputDirectory}" classpath="${project.build.outputDirectory}" classpathref="libs.directory" debug="on" debuglevel="${_debuglevel}" />
 	</target>
 
 	<!-- Runs the unit tests. -->
-	<target name="test" depends="build">
+	<target name="test" depends="compile">
 		<mkdir dir="${_test.report.directory}" />
 		<junit printsummary="on" haltonfailure="yes" fork="yes">
 			<classpath>
 				<pathelement path="${project.build.outputDirectory}" />
-				<pathelement path="${_test.bin.directory}" />
+				<pathelement path="${project.build.testOutputDirectory}" />
 				<fileset dir="${_jarlib.directory}" />
 			</classpath>
 			<formatter type="plain" usefile="on" />
@@ -91,9 +102,14 @@
 	</target>
 
 	<!-- Creates a jar with version number. -->
-	<target name="jar" depends="build">
+	<target name="jar" depends="compile">
 		<mkdir dir="${_prjlib.directory}" />
-		<jar destfile="${_prjlib.directory}/${project.artifactId}-${project.version}.jar" basedir="${project.build.outputDirectory}" manifest="${_manifest.directory}" />
+		<jar destfile="${_prjlib.directory}/${project.artifactId}-${project.version}.jar" basedir="${project.build.outputDirectory}">
+			<manifest>
+				<attribute name="Implementation-Title" value="${project.groupId}-${project.artifactId}" />
+				<attribute name="Implementation-Version" value="${project.version}" />
+			</manifest>
+		</jar>
 	</target>
 
 	<!-- Creates a zip file containing everything. -->
@@ -103,10 +119,9 @@
 	</target>
 
 	<!-- Executes all the main tasks. -->
-	<target name="dist" depends="clean, build, javadoc, jar, test">
+	<target name="dist" depends="clean, source, compile, javadoc, jar, test">
 		<!--buildnumber file="version.properties"/-->
 	</target>
 
 </project>
-
 
