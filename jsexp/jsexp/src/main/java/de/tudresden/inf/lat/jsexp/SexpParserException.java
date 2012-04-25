@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Julian Mendez
+ * Copyright (C) 2009, 2012 Julian Mendez
  *
  *
  * This file is part of jsexp.
@@ -30,11 +30,12 @@ public class SexpParserException extends Exception {
 
 	private static final long serialVersionUID = -8566185429209182391L;
 
+	public SexpParserException(String str) {
+		super(str);
+	}
+
 	public SexpParserException(Throwable e) {
 		super(e);
 	}
 
-	public SexpParserException(String str) {
-		super(str);
-	}
 }

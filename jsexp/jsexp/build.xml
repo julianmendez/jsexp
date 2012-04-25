@@ -2,7 +2,7 @@
 <project name="jsexp" default="dist" basedir=".">
 
 	<!--
- * Copyright 2009 Julian Mendez
+ * Copyright (C) 2009, 2012 Julian Mendez
  *
  *
  * This file is part of jsexp.

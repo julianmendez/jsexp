@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Julian Mendez
+ * Copyright (C) 2009, 2012 Julian Mendez
  *
  *
  * This file is part of jsexp.
@@ -37,59 +37,12 @@ public class SexpString implements Sexp {
 		this.rep = text;
 	}
 
-	/**
-	 * @see de.tudresden.inf.lat.jsexp.Sexp#add(Sexp)
-	 */
+	@Override
 	public void add(Sexp item) {
 		throw new IndexOutOfBoundsException();
 	}
 
-	/**
-	 * @see de.tudresden.inf.lat.jsexp.Sexp#get(int)
-	 */
-	public Sexp get(int index) {
-		throw new IndexOutOfBoundsException();
-	}
-
-	/**
-	 * @see de.tudresden.inf.lat.jsexp.Sexp#getDepth()
-	 */
-	public int getDepth() {
-		return 0;
-	}
-
-	/**
-	 * @see de.tudresden.inf.lat.jsexp.Sexp#getLength()
-	 */
-	public int getLength() {
-		return 0;
-	}
-
-	private String getText() {
-		return this.rep;
-	}
-
-	/**
-	 * @see de.tudresden.inf.lat.jsexp.Sexp#isAtomic()
-	 */
-	public boolean isAtomic() {
-		return true;
-	}
-
-	/**
-	 * @see de.tudresden.inf.lat.jsexp.Sexp#iterator()
-	 */
-	public Iterator<Sexp> iterator() {
-		return null;
-	}
-
-	/**
-	 * @see de.tudresden.inf.lat.jsexp.Sexp#toIndentedString()
-	 */
-	public String toIndentedString() {
-		return toString();
-	}
-
+	@Override
 	public boolean equals(Object o) {
 		boolean ret = false;
 		if (o instanceof SexpString) {
@@ -99,11 +52,48 @@ public class SexpString implements Sexp {
 		return ret;
 	}
 
+	@Override
+	public Sexp get(int index) {
+		throw new IndexOutOfBoundsException();
+	}
+
+	@Override
+	public int getDepth() {
+		return 0;
+	}
+
+	@Override
+	public int getLength() {
+		return 0;
+	}
+
+	private String getText() {
+		return this.rep;
+	}
+
+	@Override
 	public int hashCode() {
 		return getText().hashCode();
 	}
 
+	@Override
+	public boolean isAtomic() {
+		return true;
+	}
+
+	@Override
+	public Iterator<Sexp> iterator() {
+		return null;
+	}
+
+	@Override
+	public String toIndentedString() {
+		return toString();
+	}
+
+	@Override
 	public String toString() {
 		return getText();
 	}
+
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Julian Mendez
+ * Copyright (C) 2009, 2012 Julian Mendez
  *
  *
  * This file is part of jsexp.
@@ -43,16 +43,6 @@ public interface Sexp extends Iterable<Sexp> {
 	public void add(Sexp item);
 
 	/**
-	 * Gives the depth of an S-expression. The depth is defined as 0 for atomic
-	 * expressions, and one more than the maximum of the depth of the members
-	 * for non-atomic expression.
-	 * 
-	 * @return 0 for an atomic S-expression or 1+max(depth(elem)) for a
-	 *         non-atomic S-expression, where elem are its members.
-	 */
-	public int getDepth();
-
-	/**
 	 * Gets an element given by index.
 	 * 
 	 * @param index
@@ -62,6 +52,16 @@ public interface Sexp extends Iterable<Sexp> {
 	 * @return the index-th element for a non-atomic S-expression
 	 */
 	public Sexp get(int index);
+
+	/**
+	 * Gives the depth of an S-expression. The depth is defined as 0 for atomic
+	 * expressions, and one more than the maximum of the depth of the members
+	 * for non-atomic expression.
+	 * 
+	 * @return 0 for an atomic S-expression or 1+max(depth(elem)) for a
+	 *         non-atomic S-expression, where elem are its members.
+	 */
+	public int getDepth();
 
 	/**
 	 * Returns the length of a Sexp object.
@@ -92,4 +92,5 @@ public interface Sexp extends Iterable<Sexp> {
 	 * @return a string with the indented S-expression.
 	 */
 	public String toIndentedString();
+
 }

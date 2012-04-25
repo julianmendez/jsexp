@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Julian Mendez
+ * Copyright (C) 2009, 2012 Julian Mendez
  *
  *
  * This file is part of jsexp.
@@ -42,16 +42,6 @@ public class SexpList implements Sexp {
 	}
 
 	/**
-	 * @see de.tudresden.inf.lat.jsexp.Sexp#add(Sexp)
-	 */
-	public void add(Sexp item) {
-		if (getDepth() < item.getDepth() + 1) {
-			this.depth = item.getDepth() + 1;
-		}
-		this.rep.add(item);
-	}
-
-	/**
 	 * Creates a non-atomic S-expression using a list of tokens.
 	 * 
 	 * @param tokenList
@@ -85,44 +75,55 @@ public class SexpList implements Sexp {
 		this.rep = ret.rep;
 	}
 
-	/**
-	 * @see de.tudresden.inf.lat.jsexp.Sexp#get(int)
-	 */
+	@Override
+	public void add(Sexp item) {
+		if (getDepth() < item.getDepth() + 1) {
+			this.depth = item.getDepth() + 1;
+		}
+		this.rep.add(item);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		boolean ret = false;
+		if (o instanceof SexpList) {
+			SexpList other = (SexpList) o;
+			ret = this.rep.equals(other.rep);
+		}
+		return ret;
+	}
+
+	@Override
 	public Sexp get(int index) {
 		return this.rep.get(index);
 	}
 
-	/**
-	 * @see de.tudresden.inf.lat.jsexp.Sexp#getDepth()
-	 */
+	@Override
 	public int getDepth() {
 		return this.depth;
 	}
 
-	/**
-	 * @see de.tudresden.inf.lat.jsexp.Sexp#getLength()
-	 */
+	@Override
 	public int getLength() {
 		return this.rep.size();
 	}
 
-	/**
-	 * @see de.tudresden.inf.lat.jsexp.Sexp#isAtomic()
-	 */
+	@Override
+	public int hashCode() {
+		return this.rep.hashCode();
+	}
+
+	@Override
 	public boolean isAtomic() {
 		return false;
 	}
 
-	/**
-	 * @see de.tudresden.inf.lat.jsexp.Sexp#iterator()
-	 */
+	@Override
 	public Iterator<Sexp> iterator() {
 		return this.rep.iterator();
 	}
 
-	/**
-	 * @see de.tudresden.inf.lat.jsexp.Sexp#toIndentedString()
-	 */
+	@Override
 	public String toIndentedString() {
 		return toIndentedString(this, 0).trim();
 	}
@@ -164,19 +165,7 @@ public class SexpList implements Sexp {
 		return ret0.toString();
 	}
 
-	public boolean equals(Object o) {
-		boolean ret = false;
-		if (o instanceof SexpList) {
-			SexpList other = (SexpList) o;
-			ret = this.rep.equals(other.rep);
-		}
-		return ret;
-	}
-
-	public int hashCode() {
-		return this.rep.hashCode();
-	}
-
+	@Override
 	public String toString() {
 		StringBuffer ret0 = new StringBuffer();
 		ret0.append(Token.leftParenthesisChar);
@@ -190,4 +179,5 @@ public class SexpList implements Sexp {
 		ret0.append(Token.rightParenthesisChar);
 		return ret0.toString();
 	}
+
 }

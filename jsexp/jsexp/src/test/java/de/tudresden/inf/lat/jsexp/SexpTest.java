@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Julian Mendez
+ * Copyright (C) 2009, 2012 Julian Mendez
  *
  *
  * This file is part of jsexp.
@@ -28,35 +28,10 @@ import junit.framework.TestCase;
 
 public class SexpTest extends TestCase {
 
-	public void testMissingParenthesis() throws SexpParserException,
-			IOException {
-		String testStr = "(( defun test () \"hi there\")( a s ";
-		try {
-			SexpFactory.parse(new ByteArrayInputStream(testStr.getBytes()));
-			assertTrue(false);
-		} catch (SexpParserException e) {
-			assertTrue(true);
-		}
-		testStr = "(( defun test () \"hi there\")";
-		try {
-			SexpFactory.parse(testStr);
-			assertTrue(false);
-		} catch (SexpParserException e) {
-			assertTrue(true);
-		}
-		testStr = ") defun test () \"hi there\")";
-		try {
-			SexpFactory.parse(new ByteArrayInputStream(testStr.getBytes()));
-			assertTrue(false);
-		} catch (SexpParserException e) {
-			assertTrue(true);
-		}
-	}
-
 	public void testDepth() throws SexpParserException, IOException {
 		String testStr = " (( defun test () \"hi there\"))";
-		ByteArrayInputStream input = new ByteArrayInputStream(testStr
-				.getBytes());
+		ByteArrayInputStream input = new ByteArrayInputStream(
+				testStr.getBytes());
 		Sexp parsedExpression = SexpFactory.parse(input);
 		Sexp sexp1 = SexpFactory.newNonAtomicSexp();
 		sexp1.add(SexpFactory.newAtomicSexp("defun"));
@@ -68,15 +43,42 @@ public class SexpTest extends TestCase {
 		assertEquals(expectedExpression, parsedExpression);
 	}
 
-	public void testParsing() throws SexpParserException, IOException {
-		String testStr = "( defun test () \"hi there\")";
-		Sexp parsedExpression = SexpFactory.parse(testStr);
-		Sexp expectedExpression = SexpFactory.newNonAtomicSexp();
-		expectedExpression.add(SexpFactory.newAtomicSexp("defun"));
-		expectedExpression.add(SexpFactory.newAtomicSexp("test"));
-		expectedExpression.add(SexpFactory.newNonAtomicSexp());
-		expectedExpression.add(SexpFactory.newAtomicSexp("\"hi there\""));
-		assertEquals(expectedExpression, parsedExpression);
+	public void testEmptyString() throws SexpParserException, IOException {
+		String testStr = "";
+		try {
+			SexpFactory.parse(new ByteArrayInputStream(testStr.getBytes()));
+			assertTrue(false);
+		} catch (SexpParserException e) {
+			assertTrue(true);
+		}
+	}
+
+	public void testGet() throws SexpParserException, IOException {
+		String testStr = "((elem-01-01 elem-01-02) elem-02 (elem-03-01 elem-03-02 elem-03-03))";
+		Sexp parsedExpr = SexpFactory.parse(new ByteArrayInputStream(testStr
+				.getBytes()));
+		Sexp expectedElem03 = SexpFactory.newNonAtomicSexp();
+		expectedElem03.add(SexpFactory.newAtomicSexp("elem-03-01"));
+		expectedElem03.add(SexpFactory.newAtomicSexp("elem-03-02"));
+		expectedElem03.add(SexpFactory.newAtomicSexp("elem-03-03"));
+		assertEquals(SexpFactory.newAtomicSexp("elem-01-01"), parsedExpr.get(0)
+				.get(0));
+		assertEquals(SexpFactory.newAtomicSexp("elem-01-02"), parsedExpr.get(0)
+				.get(1));
+		assertEquals(SexpFactory.newAtomicSexp("elem-02"), parsedExpr.get(1));
+		assertEquals(expectedElem03, parsedExpr.get(2));
+		try {
+			parsedExpr.get(3);
+			assertTrue(false);
+		} catch (IndexOutOfBoundsException e) {
+			assertTrue(true);
+		}
+		try {
+			(SexpFactory.newAtomicSexp("example")).get(0);
+			assertTrue(false);
+		} catch (IndexOutOfBoundsException e) {
+			assertTrue(true);
+		}
 	}
 
 	public void testIndentedString() {
@@ -87,9 +89,8 @@ public class SexpTest extends TestCase {
 		aux1.add(SexpFactory.newAtomicSexp("c"));
 		aux1.add(SexpFactory.newAtomicSexp("subsumer"));
 		aux.add(aux1);
-		aux
-				.add(SexpFactory
-						.newAtomicSexp("\"Mark as subsumer of c all told subsumers and their ancestors in the hierarchy\""));
+		aux.add(SexpFactory
+				.newAtomicSexp("\"Mark as subsumer of c all told subsumers and their ancestors in the hierarchy\""));
 		Sexp aux2 = SexpFactory.newNonAtomicSexp();
 		aux2.add(SexpFactory.newAtomicSexp("dolist"));
 		Sexp aux2_1 = SexpFactory.newNonAtomicSexp();
@@ -140,16 +141,23 @@ public class SexpTest extends TestCase {
 		assertEquals(str, aux.toIndentedString());
 	}
 
-	public void testPlainString() throws SexpParserException, IOException {
-		String testStr = "test";
-		Sexp expectedExpr = SexpFactory.newAtomicSexp("test");
-		Sexp parsedExpr = SexpFactory.parse(new ByteArrayInputStream(testStr
-				.getBytes()));
-		assertEquals(expectedExpr, parsedExpr);
-	}
-
-	public void testEmptyString() throws SexpParserException, IOException {
-		String testStr = "";
+	public void testMissingParenthesis() throws SexpParserException,
+			IOException {
+		String testStr = "(( defun test () \"hi there\")( a s ";
+		try {
+			SexpFactory.parse(new ByteArrayInputStream(testStr.getBytes()));
+			assertTrue(false);
+		} catch (SexpParserException e) {
+			assertTrue(true);
+		}
+		testStr = "(( defun test () \"hi there\")";
+		try {
+			SexpFactory.parse(testStr);
+			assertTrue(false);
+		} catch (SexpParserException e) {
+			assertTrue(true);
+		}
+		testStr = ") defun test () \"hi there\")";
 		try {
 			SexpFactory.parse(new ByteArrayInputStream(testStr.getBytes()));
 			assertTrue(false);
@@ -158,32 +166,23 @@ public class SexpTest extends TestCase {
 		}
 	}
 
-	public void testGet() throws SexpParserException, IOException {
-		String testStr = "((elem-01-01 elem-01-02) elem-02 (elem-03-01 elem-03-02 elem-03-03))";
+	public void testParsing() throws SexpParserException, IOException {
+		String testStr = "( defun test () \"hi there\")";
+		Sexp parsedExpression = SexpFactory.parse(testStr);
+		Sexp expectedExpression = SexpFactory.newNonAtomicSexp();
+		expectedExpression.add(SexpFactory.newAtomicSexp("defun"));
+		expectedExpression.add(SexpFactory.newAtomicSexp("test"));
+		expectedExpression.add(SexpFactory.newNonAtomicSexp());
+		expectedExpression.add(SexpFactory.newAtomicSexp("\"hi there\""));
+		assertEquals(expectedExpression, parsedExpression);
+	}
+
+	public void testPlainString() throws SexpParserException, IOException {
+		String testStr = "test";
+		Sexp expectedExpr = SexpFactory.newAtomicSexp("test");
 		Sexp parsedExpr = SexpFactory.parse(new ByteArrayInputStream(testStr
 				.getBytes()));
-		Sexp expectedElem03 = SexpFactory.newNonAtomicSexp();
-		expectedElem03.add(SexpFactory.newAtomicSexp("elem-03-01"));
-		expectedElem03.add(SexpFactory.newAtomicSexp("elem-03-02"));
-		expectedElem03.add(SexpFactory.newAtomicSexp("elem-03-03"));
-		assertEquals(SexpFactory.newAtomicSexp("elem-01-01"), parsedExpr.get(0)
-				.get(0));
-		assertEquals(SexpFactory.newAtomicSexp("elem-01-02"), parsedExpr.get(0)
-				.get(1));
-		assertEquals(SexpFactory.newAtomicSexp("elem-02"), parsedExpr.get(1));
-		assertEquals(expectedElem03, parsedExpr.get(2));
-		try {
-			parsedExpr.get(3);
-			assertTrue(false);
-		} catch (IndexOutOfBoundsException e) {
-			assertTrue(true);
-		}
-		try {
-			(SexpFactory.newAtomicSexp("example")).get(0);
-			assertTrue(false);
-		} catch (IndexOutOfBoundsException e) {
-			assertTrue(true);
-		}
+		assertEquals(expectedExpr, parsedExpr);
 	}
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Julian Mendez
+ * Copyright (C) 2009, 2012 Julian Mendez
  *
  *
  * This file is part of jsexp.
@@ -36,20 +36,19 @@ import java.util.List;
 class SexpTokenizer {
 
 	private enum State {
-		SYMBOL, QMARK, QMARK_BSLASH, VBAR, VBAR_BSLASH, COMMENT
+		COMMENT, QMARK, QMARK_BSLASH, SYMBOL, VBAR, VBAR_BSLASH
 	}
 
-	public static final char escapeChar = Token.escapeChar;
 	public static final char commentChar = Token.commentChar;
+	public static final char escapeChar = Token.escapeChar;
 	public static final char leftParenthesisChar = Token.leftParenthesisChar;
-	public static final char rightParenthesisChar = Token.rightParenthesisChar;
-	public static final char quotationMarkChar = Token.quotationMarkChar;
-	public static final char verticalBarChar = Token.verticalBarChar;
-	public static final char spaceChar = ' ';
-	public static final char returnChar = '\r';
 	public static final char newLineChar = '\n';
-
+	public static final char quotationMarkChar = Token.quotationMarkChar;
+	public static final char returnChar = '\r';
+	public static final char rightParenthesisChar = Token.rightParenthesisChar;
+	public static final char spaceChar = ' ';
 	public static final char tabChar = '\t';
+	public static final char verticalBarChar = Token.verticalBarChar;
 
 	public static List<Token> tokenize(InputStream in)
 			throws SexpParserException, IOException {
@@ -66,12 +65,11 @@ class SexpTokenizer {
 		return tokenizer.getParsedTokens();
 	}
 
-	private State state = State.SYMBOL;
 	private Token currentToken = new Token();
-	private List<Token> tokenList = new ArrayList<Token>();
-	private int lineNumber = 1;
-
 	private int depth = 0;
+	private int lineNumber = 1;
+	private State state = State.SYMBOL;
+	private List<Token> tokenList = new ArrayList<Token>();
 
 	private SexpTokenizer() {
 	}
@@ -213,4 +211,5 @@ class SexpTokenizer {
 		}
 		this.state = State.VBAR;
 	}
+
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Julian Mendez
+ * Copyright (C) 2009, 2012 Julian Mendez
  *
  *
  * This file is part of jsexp.
@@ -54,25 +54,6 @@ public class SexpFactory {
 	}
 
 	/**
-	 * Creates a new S-expression read from a string.
-	 * 
-	 * @param str
-	 *            string to read the expression.
-	 * @return the parsed S-expression
-	 * @throws SexpParserException
-	 *             if the expression cannot be parsed.
-	 */
-	public static Sexp parse(String str) throws SexpParserException {
-		Sexp ret = null;
-		try {
-			ret = parse(new ByteArrayInputStream(str.getBytes()));
-		} catch (IOException e) {
-			throw new SexpParserException(e);
-		}
-		return ret;
-	}
-
-	/**
 	 * Creates a new S-expression read from an input stream.
 	 * 
 	 * @param in
@@ -100,4 +81,24 @@ public class SexpFactory {
 		}
 		return ret;
 	}
+
+	/**
+	 * Creates a new S-expression read from a string.
+	 * 
+	 * @param str
+	 *            string to read the expression.
+	 * @return the parsed S-expression
+	 * @throws SexpParserException
+	 *             if the expression cannot be parsed.
+	 */
+	public static Sexp parse(String str) throws SexpParserException {
+		Sexp ret = null;
+		try {
+			ret = parse(new ByteArrayInputStream(str.getBytes()));
+		} catch (IOException e) {
+			throw new SexpParserException(e);
+		}
+		return ret;
+	}
+
 }

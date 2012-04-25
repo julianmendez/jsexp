@@ -1,5 +1,5 @@
 /*
- * Copyright 2009 Julian Mendez
+ * Copyright (C) 2009, 2012 Julian Mendez
  *
  *
  * This file is part of jsexp.
@@ -28,15 +28,16 @@ package de.tudresden.inf.lat.jsexp;
  * @author Julian Mendez
  */
 class Token {
-	public static final char escapeChar = '\\';
+
 	public static final char commentChar = ';';
+	public static final char escapeChar = '\\';
 	public static final char leftParenthesisChar = '(';
-	public static final char rightParenthesisChar = ')';
 	public static final char quotationMarkChar = '\"';
+	public static final char rightParenthesisChar = ')';
 	public static final char verticalBarChar = '|';
 
-	private StringBuffer sbuf = new StringBuffer();
 	private int location = -1;
+	private StringBuffer sbuf = new StringBuffer();
 
 	public Token() {
 	}
@@ -60,6 +61,7 @@ class Token {
 		}
 	}
 
+	@Override
 	public boolean equals(Object o) {
 		boolean ret = false;
 		if (o instanceof Token) {
@@ -78,6 +80,7 @@ class Token {
 		return this.sbuf.toString();
 	}
 
+	@Override
 	public int hashCode() {
 		return this.getText().hashCode();
 	}
@@ -120,7 +123,9 @@ class Token {
 		this.sbuf = new StringBuffer(str);
 	}
 
+	@Override
 	public String toString() {
 		return getText() + ":" + getLocation();
 	}
+
 }
