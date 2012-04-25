@@ -85,8 +85,8 @@ public class SexpList implements Sexp {
 
 	@Override
 	public boolean equals(Object o) {
-		boolean ret = false;
-		if (o instanceof SexpList) {
+		boolean ret = (this == o);
+		if (!ret && o instanceof SexpList) {
 			SexpList other = (SexpList) o;
 			ret = this.rep.equals(other.rep);
 		}

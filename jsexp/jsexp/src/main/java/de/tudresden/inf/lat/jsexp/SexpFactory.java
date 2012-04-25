@@ -54,7 +54,7 @@ public class SexpFactory {
 	}
 
 	/**
-	 * Creates a new S-expression read from an input stream.
+	 * Creates a new S-expression read from a reader.
 	 * 
 	 * @param in
 	 *            input to read the expression.

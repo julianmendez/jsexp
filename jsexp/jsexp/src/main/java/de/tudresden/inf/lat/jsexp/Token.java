@@ -47,6 +47,7 @@ class Token {
 			throw new IllegalArgumentException(
 					"Cannot create a token using a null string.");
 		}
+
 		this.sbuf = new StringBuffer(str);
 		this.location = loc;
 	}
@@ -63,8 +64,8 @@ class Token {
 
 	@Override
 	public boolean equals(Object o) {
-		boolean ret = false;
-		if (o instanceof Token) {
+		boolean ret = (this == o);
+		if (!ret && o instanceof Token) {
 			Token other = (Token) o;
 			ret = getText().equals(other.getText())
 					&& getLocation() == other.getLocation();

@@ -31,7 +31,7 @@ import java.util.Iterator;
  */
 public class SexpString implements Sexp {
 
-	private String rep = null;
+	private final String rep;
 
 	protected SexpString(String text) {
 		this.rep = text;
@@ -44,8 +44,8 @@ public class SexpString implements Sexp {
 
 	@Override
 	public boolean equals(Object o) {
-		boolean ret = false;
-		if (o instanceof SexpString) {
+		boolean ret = (this == o);
+		if (!ret && o instanceof SexpString) {
 			SexpString other = (SexpString) o;
 			ret = getText().equals(other.getText());
 		}
