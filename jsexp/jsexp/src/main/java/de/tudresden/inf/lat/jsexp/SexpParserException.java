@@ -30,12 +30,20 @@ public class SexpParserException extends Exception {
 
 	private static final long serialVersionUID = -8566185429209182391L;
 
-	public SexpParserException(String str) {
-		super(str);
+	public SexpParserException() {
+		super();
 	}
 
-	public SexpParserException(Throwable e) {
-		super(e);
+	public SexpParserException(String message) {
+		super(message);
+	}
+
+	public SexpParserException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public SexpParserException(Throwable cause) {
+		super(cause);
 	}
 
 }
