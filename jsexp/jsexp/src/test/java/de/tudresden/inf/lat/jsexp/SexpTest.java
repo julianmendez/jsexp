@@ -21,8 +21,8 @@
 
 package de.tudresden.inf.lat.jsexp;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.StringReader;
 
 import junit.framework.TestCase;
 
@@ -30,9 +30,7 @@ public class SexpTest extends TestCase {
 
 	public void testDepth() throws SexpParserException, IOException {
 		String testStr = " (( defun test () \"hi there\"))";
-		ByteArrayInputStream input = new ByteArrayInputStream(
-				testStr.getBytes());
-		Sexp parsedExpression = SexpFactory.parse(input);
+		Sexp parsedExpression = SexpFactory.parse(new StringReader(testStr));
 		Sexp sexp1 = SexpFactory.newNonAtomicSexp();
 		sexp1.add(SexpFactory.newAtomicSexp("defun"));
 		sexp1.add(SexpFactory.newAtomicSexp("test"));
@@ -46,7 +44,7 @@ public class SexpTest extends TestCase {
 	public void testEmptyString() throws SexpParserException, IOException {
 		String testStr = "";
 		try {
-			SexpFactory.parse(new ByteArrayInputStream(testStr.getBytes()));
+			SexpFactory.parse(new StringReader(testStr));
 			assertTrue(false);
 		} catch (SexpParserException e) {
 			assertTrue(true);
@@ -55,8 +53,7 @@ public class SexpTest extends TestCase {
 
 	public void testGet() throws SexpParserException, IOException {
 		String testStr = "((elem-01-01 elem-01-02) elem-02 (elem-03-01 elem-03-02 elem-03-03))";
-		Sexp parsedExpr = SexpFactory.parse(new ByteArrayInputStream(testStr
-				.getBytes()));
+		Sexp parsedExpr = SexpFactory.parse(new StringReader(testStr));
 		Sexp expectedElem03 = SexpFactory.newNonAtomicSexp();
 		expectedElem03.add(SexpFactory.newAtomicSexp("elem-03-01"));
 		expectedElem03.add(SexpFactory.newAtomicSexp("elem-03-02"));
@@ -145,7 +142,7 @@ public class SexpTest extends TestCase {
 			IOException {
 		String testStr = "(( defun test () \"hi there\")( a s ";
 		try {
-			SexpFactory.parse(new ByteArrayInputStream(testStr.getBytes()));
+			SexpFactory.parse(new StringReader(testStr));
 			assertTrue(false);
 		} catch (SexpParserException e) {
 			assertTrue(true);
@@ -159,7 +156,7 @@ public class SexpTest extends TestCase {
 		}
 		testStr = ") defun test () \"hi there\")";
 		try {
-			SexpFactory.parse(new ByteArrayInputStream(testStr.getBytes()));
+			SexpFactory.parse(new StringReader(testStr));
 			assertTrue(false);
 		} catch (SexpParserException e) {
 			assertTrue(true);
@@ -180,8 +177,7 @@ public class SexpTest extends TestCase {
 	public void testPlainString() throws SexpParserException, IOException {
 		String testStr = "test";
 		Sexp expectedExpr = SexpFactory.newAtomicSexp("test");
-		Sexp parsedExpr = SexpFactory.parse(new ByteArrayInputStream(testStr
-				.getBytes()));
+		Sexp parsedExpr = SexpFactory.parse(new StringReader(testStr));
 		assertEquals(expectedExpr, parsedExpr);
 	}
 

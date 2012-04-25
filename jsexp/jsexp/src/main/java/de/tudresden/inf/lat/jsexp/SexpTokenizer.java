@@ -22,7 +22,7 @@
 package de.tudresden.inf.lat.jsexp;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,8 +50,8 @@ class SexpTokenizer {
 	public static final char tabChar = '\t';
 	public static final char verticalBarChar = Token.verticalBarChar;
 
-	public static List<Token> tokenize(InputStream in)
-			throws SexpParserException, IOException {
+	public static List<Token> tokenize(Reader in) throws SexpParserException,
+			IOException {
 		SexpTokenizer tokenizer = new SexpTokenizer();
 		boolean finished = false;
 		int ch = in.read();

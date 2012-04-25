@@ -21,8 +21,8 @@
 
 package de.tudresden.inf.lat.jsexp;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +32,7 @@ public class SexpTokenizerTest extends TestCase {
 
 	public void testBasic() throws SexpParserException, IOException {
 		String testStr = "( defun test () \"hi there\")";
-		ByteArrayInputStream input = new ByteArrayInputStream(
-				testStr.getBytes());
+		StringReader input = new StringReader(testStr);
 		List<Token> expectedList = new ArrayList<Token>();
 		expectedList.add(new Token("(", 1));
 		expectedList.add(new Token("defun", 1));
@@ -48,8 +47,7 @@ public class SexpTokenizerTest extends TestCase {
 
 	public void testBlanks() throws SexpParserException, IOException {
 		String testStr = "  \t   (  defun     test ( \t ) \n \"hi there\"   )   \t ";
-		ByteArrayInputStream input = new ByteArrayInputStream(
-				testStr.getBytes());
+		StringReader input = new StringReader(testStr);
 		List<Token> expectedList = new ArrayList<Token>();
 		expectedList.add(new Token("(", 1));
 		expectedList.add(new Token("defun", 1));
@@ -64,8 +62,7 @@ public class SexpTokenizerTest extends TestCase {
 
 	public void testComments() throws SexpParserException, IOException {
 		String testStr = "( defun \n test;no comments\n () \"hi ;no comment here \n there\") ;this is a comment";
-		ByteArrayInputStream input = new ByteArrayInputStream(
-				testStr.getBytes());
+		StringReader input = new StringReader(testStr);
 		List<Token> expectedList = new ArrayList<Token>();
 		expectedList.add(new Token("(", 1));
 		expectedList.add(new Token("defun", 1));
@@ -81,8 +78,7 @@ public class SexpTokenizerTest extends TestCase {
 
 	public void testLineNumbers() throws SexpParserException, IOException {
 		String testStr = "( \ndefun \ntest \n(\n) \"hi there\")";
-		ByteArrayInputStream input = new ByteArrayInputStream(
-				testStr.getBytes());
+		StringReader input = new StringReader(testStr);
 		List<Token> expectedList = new ArrayList<Token>();
 		expectedList.add(new Token("(", 1));
 		expectedList.add(new Token("defun", 2));
@@ -97,8 +93,7 @@ public class SexpTokenizerTest extends TestCase {
 
 	public void testNewLineInText() throws SexpParserException, IOException {
 		String testStr = "( defun test () \"hi \n\nthere\")";
-		ByteArrayInputStream input = new ByteArrayInputStream(
-				testStr.getBytes());
+		StringReader input = new StringReader(testStr);
 		List<Token> expectedList = new ArrayList<Token>();
 		expectedList.add(new Token("(", 1));
 		expectedList.add(new Token("defun", 1));
@@ -113,8 +108,7 @@ public class SexpTokenizerTest extends TestCase {
 
 	public void testNoSpaces() throws SexpParserException, IOException {
 		String testStr = "\t(defun\ttest(\t)\"hi-there\"\n)\t";
-		ByteArrayInputStream input = new ByteArrayInputStream(
-				testStr.getBytes());
+		StringReader input = new StringReader(testStr);
 		List<Token> expectedList = new ArrayList<Token>();
 		expectedList.add(new Token("(", 1));
 		expectedList.add(new Token("defun", 1));
@@ -130,8 +124,7 @@ public class SexpTokenizerTest extends TestCase {
 	public void testQuotationMarksBetweenVbars() throws SexpParserException,
 			IOException {
 		String testStr = "( defun\ttest () | I'm  \" a symbol |\n)";
-		ByteArrayInputStream input = new ByteArrayInputStream(
-				testStr.getBytes());
+		StringReader input = new StringReader(testStr);
 		List<Token> expectedList = new ArrayList<Token>();
 		expectedList.add(new Token("(", 1));
 		expectedList.add(new Token("defun", 1));
@@ -147,8 +140,7 @@ public class SexpTokenizerTest extends TestCase {
 	public void testQuotationMarksInQuotedText() throws SexpParserException,
 			IOException {
 		String testStr = "( defun\ttest () \"hi \\\" there\"\n)";
-		ByteArrayInputStream input = new ByteArrayInputStream(
-				testStr.getBytes());
+		StringReader input = new StringReader(testStr);
 		List<Token> expectedList = new ArrayList<Token>();
 		expectedList.add(new Token("(", 1));
 		expectedList.add(new Token("defun", 1));
@@ -163,8 +155,7 @@ public class SexpTokenizerTest extends TestCase {
 
 	public void testUnbalancedQuotes() throws SexpParserException, IOException {
 		String testStr = "( defun test () \"hi there)";
-		ByteArrayInputStream input = new ByteArrayInputStream(
-				testStr.getBytes());
+		StringReader input = new StringReader(testStr);
 		try {
 			SexpTokenizer.tokenize(input);
 			assertTrue(false);
@@ -176,8 +167,7 @@ public class SexpTokenizerTest extends TestCase {
 	public void testUnbalancedVerticalBars() throws SexpParserException,
 			IOException {
 		String testStr = "( defun test () |hi there)";
-		ByteArrayInputStream input = new ByteArrayInputStream(
-				testStr.getBytes());
+		StringReader input = new StringReader(testStr);
 		try {
 			SexpTokenizer.tokenize(input);
 			assertTrue(false);
@@ -189,8 +179,7 @@ public class SexpTokenizerTest extends TestCase {
 	public void testVerticalBarBetweenVbars() throws SexpParserException,
 			IOException {
 		String testStr = "( defun\ttest () |I'm \\| a symbol|\n)";
-		ByteArrayInputStream input = new ByteArrayInputStream(
-				testStr.getBytes());
+		StringReader input = new StringReader(testStr);
 		List<Token> expectedList = new ArrayList<Token>();
 		expectedList.add(new Token("(", 1));
 		expectedList.add(new Token("defun", 1));
@@ -205,8 +194,7 @@ public class SexpTokenizerTest extends TestCase {
 
 	public void testWrongParentheses() throws SexpParserException, IOException {
 		String testStr = ") defun\ttest () \"hi \\\" there\"\n(";
-		ByteArrayInputStream input = new ByteArrayInputStream(
-				testStr.getBytes());
+		StringReader input = new StringReader(testStr);
 		try {
 			SexpTokenizer.tokenize(input);
 			assertTrue(false);

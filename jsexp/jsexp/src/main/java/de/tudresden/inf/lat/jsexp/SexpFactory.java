@@ -21,9 +21,9 @@
 
 package de.tudresden.inf.lat.jsexp;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.Reader;
+import java.io.StringReader;
 import java.util.List;
 
 /**
@@ -57,15 +57,14 @@ public class SexpFactory {
 	 * Creates a new S-expression read from an input stream.
 	 * 
 	 * @param in
-	 *            input stream to read the expression.
+	 *            input to read the expression.
 	 * @return the parsed S-expression
 	 * @throws SexpParserException
 	 *             if the expression cannot be parsed.
 	 * @throws IOException
-	 *             if there is any problem reading the input stream.
+	 *             if there is any problem reading the input.
 	 */
-	public static Sexp parse(InputStream in) throws SexpParserException,
-			IOException {
+	public static Sexp parse(Reader in) throws SexpParserException, IOException {
 		Sexp ret = null;
 		List<Token> tokenList = SexpTokenizer.tokenize(in);
 		if (tokenList.size() == 0) {
@@ -94,7 +93,7 @@ public class SexpFactory {
 	public static Sexp parse(String str) throws SexpParserException {
 		Sexp ret = null;
 		try {
-			ret = parse(new ByteArrayInputStream(str.getBytes()));
+			ret = parse(new StringReader(str));
 		} catch (IOException e) {
 			throw new SexpParserException(e);
 		}
