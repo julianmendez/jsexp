@@ -33,8 +33,8 @@ import java.util.Stack;
  */
 public class SexpList implements Sexp {
 
-	protected static final String newLine = "\n";
-	protected static final String tabulation = "  ";
+	private static final String newLine = "\n";
+	private static final String tabulation = "  ";
 	private int depth = 0;
 	private List<Sexp> rep = new ArrayList<Sexp>();
 
@@ -140,7 +140,7 @@ public class SexpList implements Sexp {
 	 * @return an indented string of the passed S-(sub)expression at a certain
 	 *         depth.
 	 */
-	protected String toIndentedString(Sexp expr, int depth) {
+	private String toIndentedString(Sexp expr, int depth) {
 		StringBuffer ret0 = new StringBuffer();
 		if (expr.isAtomic()) {
 			ret0.append(expr.toIndentedString());

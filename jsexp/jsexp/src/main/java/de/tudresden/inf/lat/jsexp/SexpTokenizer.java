@@ -87,7 +87,7 @@ class SexpTokenizer {
 		}
 	}
 
-	protected void flush() {
+	private void flush() {
 		if (this.currentToken.length() > 0) {
 			this.currentToken.setLocation(lineNumber);
 			this.tokenList.add(this.currentToken);
@@ -95,15 +95,11 @@ class SexpTokenizer {
 		}
 	}
 
-	protected Token getCurrentToken() {
-		return this.currentToken;
-	}
-
-	protected List<Token> getParsedTokens() {
+	private List<Token> getParsedTokens() {
 		return this.tokenList;
 	}
 
-	protected boolean readChar(char ch) {
+	private boolean readChar(char ch) {
 		boolean ret = false;
 		switch (this.state) {
 		case SYMBOL:
@@ -129,7 +125,7 @@ class SexpTokenizer {
 		return ret;
 	}
 
-	protected void readComment(char ch) {
+	private void readComment(char ch) {
 		if (ch == newLineChar) {
 			flush();
 			this.lineNumber++;
@@ -139,7 +135,7 @@ class SexpTokenizer {
 		}
 	}
 
-	protected void readQuotationMark(char ch) {
+	private void readQuotationMark(char ch) {
 		this.currentToken.append(ch);
 		if (ch == newLineChar) {
 			this.lineNumber++;
@@ -151,7 +147,7 @@ class SexpTokenizer {
 		}
 	}
 
-	protected void readQuotationMarkBackslash(char ch) {
+	private void readQuotationMarkBackslash(char ch) {
 		this.currentToken.append(ch);
 		if (ch == newLineChar) {
 			this.lineNumber++;
@@ -159,7 +155,7 @@ class SexpTokenizer {
 		this.state = State.QMARK;
 	}
 
-	protected void readSymbol(char ch) {
+	private void readSymbol(char ch) {
 		if (ch == newLineChar) {
 			flush();
 			this.lineNumber++;
@@ -192,7 +188,7 @@ class SexpTokenizer {
 		}
 	}
 
-	protected void readVerticalBar(char ch) {
+	private void readVerticalBar(char ch) {
 		this.currentToken.append(ch);
 		if (ch == newLineChar) {
 			this.lineNumber++;
@@ -204,7 +200,7 @@ class SexpTokenizer {
 		}
 	}
 
-	protected void readVerticalBarBackslash(char ch) {
+	private void readVerticalBarBackslash(char ch) {
 		this.currentToken.append(ch);
 		if (ch == newLineChar) {
 			this.lineNumber++;
