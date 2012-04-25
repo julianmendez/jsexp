@@ -27,12 +27,17 @@ import java.util.Iterator;
  * Represents an atomic S-expression.
  * 
  * @author Julian Mendez
- * 
  */
 public class SexpString implements Sexp {
 
 	private final String rep;
 
+	/**
+	 * Constructs a new S-expression using the given string.
+	 * 
+	 * @param text
+	 *            string for the S-expression
+	 */
 	protected SexpString(String text) {
 		this.rep = text;
 	}

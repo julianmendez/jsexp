@@ -37,11 +37,23 @@ class Token {
 	public static final char verticalBarChar = '|';
 
 	private int location = -1;
-	private StringBuffer sbuf = new StringBuffer();
+	private final StringBuffer sbuf;
 
+	/**
+	 * Constructs a new empty token.
+	 */
 	public Token() {
+		this.sbuf = new StringBuffer();
 	}
 
+	/**
+	 * Constructs a new token.
+	 * 
+	 * @param str
+	 *            string value of the token
+	 * @param loc
+	 *            location of the token
+	 */
 	public Token(String str, int loc) {
 		if (str == null) {
 			throw new IllegalArgumentException(
@@ -52,14 +64,14 @@ class Token {
 		this.location = loc;
 	}
 
+	/**
+	 * Adds a character to this token
+	 * 
+	 * @param ch
+	 *            character
+	 */
 	public void append(char ch) {
 		this.sbuf.append(ch);
-	}
-
-	public void append(String str) {
-		if (str != null) {
-			this.sbuf.append(str);
-		}
 	}
 
 	@Override
@@ -73,10 +85,20 @@ class Token {
 		return ret;
 	}
 
+	/**
+	 * Returns the location of the token.
+	 * 
+	 * @return the location of the token
+	 */
 	public int getLocation() {
 		return this.location;
 	}
 
+	/**
+	 * Returns the value of the token.
+	 * 
+	 * @return the value of the token
+	 */
 	public String getText() {
 		return this.sbuf.toString();
 	}
@@ -86,42 +108,71 @@ class Token {
 		return this.getText().hashCode();
 	}
 
+	/**
+	 * Tells whether this token is a comment.
+	 * 
+	 * @return <code>true</code> if and only if this token is a comment
+	 */
 	public boolean isComment() {
 		return getText().startsWith("" + commentChar);
 	}
 
+	/**
+	 * Tells whether this token is a left parenthesis.
+	 * 
+	 * @return <code>true</code> if and only if this token is a left parenthesis
+	 */
 	public boolean isLeftParenthesis() {
 		return getText().equals("" + leftParenthesisChar);
 	}
 
+	/**
+	 * Tells whether this token is a quotation mark.
+	 * 
+	 * @return <code>true</code> if and only if this token is a quotation mark
+	 */
 	public boolean isQuotationMarkToken() {
 		return getText().startsWith("" + quotationMarkChar)
 				&& getText().endsWith("" + quotationMarkChar);
 	}
 
+	/**
+	 * Tells whether this token is a right parenthesis.
+	 * 
+	 * @return <code>true</code> if and only if this token is a right
+	 *         parenthesis
+	 */
 	public boolean isRightParenthesis() {
 		return getText().equals("" + rightParenthesisChar);
 	}
 
+	/**
+	 * Tells whether this token is a vertical bar.
+	 * 
+	 * @return <code>true</code> if and only if this token is is a vertical bar
+	 */
 	public boolean isVerticalBarToken() {
 		return getText().startsWith("" + verticalBarChar)
 				&& getText().endsWith("" + verticalBarChar);
 	}
 
+	/**
+	 * Returns the length of this token.
+	 * 
+	 * @return the length of this token
+	 */
 	public int length() {
 		return this.sbuf.length();
 	}
 
+	/**
+	 * Changes the location of this token.
+	 * 
+	 * @param loc
+	 *            the location of this token
+	 */
 	public void setLocation(int loc) {
 		this.location = loc;
-	}
-
-	public void setText(String str) {
-		if (str == null) {
-			throw new IllegalArgumentException(
-					"Cannot create a token using a null string.");
-		}
-		this.sbuf = new StringBuffer(str);
 	}
 
 	@Override

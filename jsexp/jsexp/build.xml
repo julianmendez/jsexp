@@ -64,9 +64,9 @@
 	<!-- Compiles all the source code. -->
 	<target name="compile">
 		<mkdir dir="${project.build.outputDirectory}" />
-		<javac srcdir="${project.build.sourceDirectory}" destdir="${project.build.outputDirectory}" debug="on" debuglevel="${_debuglevel}" />
+		<javac srcdir="${project.build.sourceDirectory}" destdir="${project.build.outputDirectory}" debug="on" debuglevel="${_debuglevel}" includeantruntime="false" />
 		<mkdir dir="${project.build.testOutputDirectory}" />
-		<javac srcdir="${project.build.testSourceDirectory}" destdir="${project.build.testOutputDirectory}" classpath="${project.build.outputDirectory}" debug="on" debuglevel="${_debuglevel}" />
+		<javac srcdir="${project.build.testSourceDirectory}" destdir="${project.build.testOutputDirectory}" classpath="${project.build.outputDirectory}" debug="on" debuglevel="${_debuglevel}" includeantruntime="false" />
 	</target>
 
 	<!-- Runs the unit tests. -->

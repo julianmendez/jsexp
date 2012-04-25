@@ -27,9 +27,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A LispTokenizer splits a string read from an InputStream in a list of tokens.
- * In this way, blank spaces are omitted and texts between quotation marks are
- * considered as one token. It is implemented as a finite state machine.
+ * An object of this class can create a list of tokens by processing a stream.
+ * Blank spaces are omitted and texts between quotation marks are considered as
+ * one token. It is implemented as a finite state machine.
  * 
  * @author Julian Mendez
  */
@@ -50,6 +50,17 @@ class SexpTokenizer {
 	public static final char tabChar = '\t';
 	public static final char verticalBarChar = Token.verticalBarChar;
 
+	/**
+	 * Returns a list of tokens after processing a stream.
+	 * 
+	 * @param in
+	 *            input
+	 * @return a list of tokens after processing a stream
+	 * @throws SexpParserException
+	 *             if the stream does not provide a valid S-expression
+	 * @throws IOException
+	 *             if the stream cannot be properly read
+	 */
 	public static List<Token> tokenize(Reader in) throws SexpParserException,
 			IOException {
 		SexpTokenizer tokenizer = new SexpTokenizer();
@@ -61,7 +72,7 @@ class SexpTokenizer {
 				ch = in.read();
 			}
 		}
-		tokenizer.finalize();
+		tokenizer.close();
 		return tokenizer.getParsedTokens();
 	}
 
@@ -71,10 +82,13 @@ class SexpTokenizer {
 	private State state = State.SYMBOL;
 	private List<Token> tokenList = new ArrayList<Token>();
 
+	/**
+	 * Constructs a new S-expression tokenizer.
+	 */
 	private SexpTokenizer() {
 	}
 
-	protected void finalize() throws SexpParserException {
+	private void close() throws SexpParserException {
 		flush();
 		if (this.state.equals(State.QMARK)
 				|| this.state.equals(State.QMARK_BSLASH)) {
