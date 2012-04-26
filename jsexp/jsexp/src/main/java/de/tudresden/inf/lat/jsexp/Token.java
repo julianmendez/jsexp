@@ -22,8 +22,8 @@
 package de.tudresden.inf.lat.jsexp;
 
 /**
- * This is a unit in parsing for S-expressions. A text between quotes is
- * considered as one single token.
+ * This is a categorized string used by the S-expression parser. A text between
+ * quotes is considered as a single token.
  * 
  * @author Julian Mendez
  */
@@ -86,18 +86,18 @@ class Token {
 	}
 
 	/**
-	 * Returns the location of the token.
+	 * Returns the location of this token.
 	 * 
-	 * @return the location of the token
+	 * @return the location of this token
 	 */
 	public int getLocation() {
 		return this.location;
 	}
 
 	/**
-	 * Returns the value of the token.
+	 * Returns the value of this token.
 	 * 
-	 * @return the value of the token
+	 * @return the value of this token
 	 */
 	public String getText() {
 		return this.sbuf.toString();

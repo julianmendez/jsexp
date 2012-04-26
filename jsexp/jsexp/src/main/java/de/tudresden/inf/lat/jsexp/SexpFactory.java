@@ -41,6 +41,10 @@ public class SexpFactory {
 	 * @return the atomic S-expression
 	 */
 	public static Sexp newAtomicSexp(String str) {
+		if (str == null) {
+			throw new IllegalArgumentException("Null argument.");
+		}
+
 		return new SexpString(str);
 	}
 
@@ -65,6 +69,10 @@ public class SexpFactory {
 	 *             if there is any problem reading the input.
 	 */
 	public static Sexp parse(Reader in) throws SexpParserException, IOException {
+		if (in == null) {
+			throw new IllegalArgumentException("Null argument.");
+		}
+
 		Sexp ret = null;
 		List<Token> tokenList = SexpTokenizer.tokenize(in);
 		if (tokenList.size() == 0) {
@@ -91,6 +99,10 @@ public class SexpFactory {
 	 *             if the expression cannot be parsed.
 	 */
 	public static Sexp parse(String str) throws SexpParserException {
+		if (str == null) {
+			throw new IllegalArgumentException("Null argument.");
+		}
+
 		Sexp ret = null;
 		try {
 			ret = parse(new StringReader(str));

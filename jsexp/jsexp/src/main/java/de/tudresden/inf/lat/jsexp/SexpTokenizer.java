@@ -63,6 +63,10 @@ class SexpTokenizer {
 	 */
 	public static List<Token> tokenize(Reader in) throws SexpParserException,
 			IOException {
+		if (in == null) {
+			throw new IllegalArgumentException("Null argument.");
+		}
+
 		SexpTokenizer tokenizer = new SexpTokenizer();
 		boolean finished = false;
 		int ch = in.read();

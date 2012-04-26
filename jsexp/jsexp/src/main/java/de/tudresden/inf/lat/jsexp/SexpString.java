@@ -39,6 +39,10 @@ public class SexpString implements Sexp {
 	 *            string for the S-expression
 	 */
 	protected SexpString(String text) {
+		if (text == null) {
+			throw new IllegalArgumentException("Null argument.");
+		}
+
 		this.rep = text;
 	}
 

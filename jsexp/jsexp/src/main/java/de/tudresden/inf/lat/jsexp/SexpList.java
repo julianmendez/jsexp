@@ -38,6 +38,9 @@ public class SexpList implements Sexp {
 	private int depth = 0;
 	private List<Sexp> rep = new ArrayList<Sexp>();
 
+	/**
+	 * Creates an empty non-atomic S-expression.
+	 */
 	protected SexpList() {
 	}
 
@@ -49,6 +52,10 @@ public class SexpList implements Sexp {
 	 *            balanced parenthesis.
 	 */
 	protected SexpList(List<Token> tokenList) {
+		if (tokenList == null) {
+			throw new IllegalArgumentException("Null argument.");
+		}
+
 		SexpList ret = null;
 		Stack<SexpList> stack = new Stack<SexpList>();
 		SexpList currentList = new SexpList();
@@ -77,6 +84,10 @@ public class SexpList implements Sexp {
 
 	@Override
 	public void add(Sexp item) {
+		if (item == null) {
+			throw new IllegalArgumentException("Null argument.");
+		}
+
 		if (getDepth() < item.getDepth() + 1) {
 			this.depth = item.getDepth() + 1;
 		}

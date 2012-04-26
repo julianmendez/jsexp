@@ -22,7 +22,7 @@
 package de.tudresden.inf.lat.jsexp;
 
 /**
- * Exception thrown when an error occurs trying to parse an S-expression.
+ * Exception thrown when an error occurs while trying to parse an S-expression.
  * 
  * @author Julian Mendez
  */
