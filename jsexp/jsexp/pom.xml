@@ -33,14 +33,6 @@
 	<version>0.2.0</version>
 	<packaging>jar</packaging>
 
-	<name>jsexp</name>
-
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-
-
 	<dependencies>
 
 		<dependency>
@@ -51,6 +43,12 @@
 		</dependency>
 
 	</dependencies>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<name>jsexp</name>
 
 </project>
 
