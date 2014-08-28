@@ -36,7 +36,6 @@
 
 	<property name="project.build.directory" value="${basedir}/target" />
 	<property name="project.build.outputDirectory" value="${project.build.directory}/classes" />
-	<property name="javadocsrc" value="src/main/java" />
 
 	<!-- Cleans compiled files. -->
 	<target name="clean">
@@ -49,7 +48,6 @@
 			<property name="project.groupId" value="${project.groupId}" />
 			<property name="project.artifactId" value="${project.artifactId}" />
 			<property name="project.version" value="${project.version}" />
-			<property name="javadocsrc" value="${javadocsrc}" />
 		</subant>
 	</target>
 
