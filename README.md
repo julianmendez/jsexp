@@ -3,13 +3,13 @@ jsexp
 
 jsexp is a parser for S-expressions.
 
-Documentation: [jsexp home page](http://jsexp.sourceforge.net/)
+Documentation: [jsexp home page](http://julianmendez.github.io/born)
 
-API documentation: [jsexp Javadoc](http://jsexp.sourceforge.net/javadoc/)
+API documentation: [jsexp Javadoc](http://jsexp.sourceforge.net/javadoc)
 
-Author: [Julian Mendez](http://lat.inf.tu-dresden.de/~mendez/)
+Author: [Julian Mendez](http://lat.inf.tu-dresden.de/~mendez)
 
-Licenses: [LGPL 3.0](jsexp/jsexp/copying-lesser.txt)
+Licenses: [LGPLv3](jsexp/copying-lesser.txt)
 
 
 
