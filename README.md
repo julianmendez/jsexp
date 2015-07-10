@@ -3,7 +3,7 @@ jsexp
 
 jsexp is a parser for S-expressions.
 
-Documentation: [jsexp home page](http://julianmendez.github.io/born)
+Documentation: [jsexp home page](http://julianmendez.github.io/jsexp)
 
 API documentation: [jsexp Javadoc](http://jsexp.sourceforge.net/javadoc)
 
