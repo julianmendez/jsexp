@@ -1,7 +1,9 @@
 jsexp
 =====
 
-jsexp is a parser for S-expressions.
+[![Build Status](https://travis-ci.org/julianmendez/jsexp.png?branch=master)](https://travis-ci.org/julianmendez/jsexp)
+
+**jsexp** is a parser for S-expressions.
 
 Documentation: [jsexp home page](http://julianmendez.github.io/jsexp)
 
