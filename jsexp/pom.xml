@@ -138,9 +138,9 @@
 	</developers>
 
 	<scm>
-		<url>https://github.com/julianmendez/jsexp</url>
-		<connection>scm:git:https://github.com/julianmendez/jsexp</connection>
-		<developerConnection>scm:git:https://github.com/julianmendez/jsexp</developerConnection>
+		<url>https://github.com/julianmendez/jsexp.git</url>
+		<connection>scm:git:https://github.com/julianmendez/jsexp.git</connection>
+		<developerConnection>scm:git:https://github.com/julianmendez/jsexp.git</developerConnection>
 	</scm>
 
 </project>
