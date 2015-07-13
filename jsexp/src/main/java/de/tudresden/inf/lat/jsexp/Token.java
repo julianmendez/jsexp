@@ -65,13 +65,25 @@ class Token {
 	}
 
 	/**
-	 * Adds a character to this token
+	 * Adds a character to this token.
 	 * 
 	 * @param ch
 	 *            character
 	 */
 	public void append(char ch) {
 		this.sbuf.append(ch);
+	}
+
+	/**
+	 * Adds a string to this token
+	 * 
+	 * @param str
+	 *            string
+	 */
+	public void append(String str) {
+		if (str != null) {
+			this.sbuf.append(str);
+		}
 	}
 
 	@Override
@@ -173,6 +185,21 @@ class Token {
 	 */
 	public void setLocation(int loc) {
 		this.location = loc;
+	}
+
+	/**
+	 * Changes the text of this token.
+	 * 
+	 * @param str
+	 *            the text of this token
+	 */
+	public void setText(String str) {
+		if (str == null) {
+			throw new IllegalArgumentException(
+					"Cannot create a token using a null string.");
+		}
+		this.sbuf.setLength(0);
+		this.sbuf.append(str);
 	}
 
 	@Override

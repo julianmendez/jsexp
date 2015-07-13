@@ -22,6 +22,7 @@
 package de.tudresden.inf.lat.jsexp;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +50,22 @@ class SexpTokenizer {
 	public static final char spaceChar = ' ';
 	public static final char tabChar = '\t';
 	public static final char verticalBarChar = Token.verticalBarChar;
+
+	/**
+	 * Returns a list of tokens after processing an input stream.
+	 * 
+	 * @param in
+	 *            input
+	 * @return a list of tokens after processing an input stream
+	 * @throws SexpParserException
+	 *             if the input stream does not provide a valid S-expression
+	 * @throws IOException
+	 *             if the input stream cannot be properly read
+	 */
+	public static List<Token> tokenize(InputStream in)
+			throws SexpParserException, IOException {
+		return SexpTokenizer.tokenize(in);
+	}
 
 	/**
 	 * Returns a list of tokens after processing a stream.

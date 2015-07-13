@@ -22,6 +22,8 @@
 package de.tudresden.inf.lat.jsexp;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.List;
@@ -55,6 +57,22 @@ public class SexpFactory {
 	 */
 	public static Sexp newNonAtomicSexp() {
 		return new SexpList();
+	}
+
+	/**
+	 * Creates a new S-expression read from an input stream.
+	 * 
+	 * @param in
+	 *            input stream to read the expression.
+	 * @return the parsed S-expression
+	 * @throws SexpParserException
+	 *             if the expression cannot be parsed.
+	 * @throws IOException
+	 *             if there is any problem reading the input stream.
+	 */
+	public static Sexp parse(InputStream in) throws SexpParserException,
+			IOException {
+		return parse(new InputStreamReader(in));
 	}
 
 	/**
