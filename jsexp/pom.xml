@@ -64,9 +64,10 @@
 				<version>2.3</version>
 				<executions>
 					<execution>
+						<id>sources-jar</id>
 						<phase>package</phase>
 						<goals>
-							<goal>jar</goal>
+							<goal>jar-no-fork</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -78,6 +79,7 @@
 				<version>2.9.1</version>
 				<executions>
 					<execution>
+						<id>javadoc-jar</id>
 						<phase>package</phase>
 						<goals>
 							<goal>jar</goal>
@@ -100,10 +102,60 @@
 				</configuration>
 			</plugin>
 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 
 	<name>jsexp</name>
 
+	<description>Parser in Java for Lisp S-expressions.</description>
+
+	<url>https://github.com/julianmendez/jsexp</url>
+
+	<inceptionYear>2009</inceptionYear>
+
+	<licenses>
+
+		<license>
+			<name>GNU Lesser General Public License, Version 3</name>
+			<url>https://www.gnu.org/licenses/lgpl-3.0.txt</url>
+		</license>
+
+	</licenses>
+
+	<organization>
+		<name>Chair of Automata Theory - TU Dresden</name>
+		<url>http://lat.inf.tu-dresden.de</url>
+	</organization>
+
+	<developers>
+
+		<developer>
+			<id>julianmendez</id>
+			<name>Julian Mendez</name>
+			<email>mendez@tcs.inf.tu-dresden.de</email>
+		</developer>
+
+	</developers>
+
+	<scm>
+		<url>https://github.com/julianmendez/jsexp</url>
+	</scm>
+
 </project>
+
 
