@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ivy-module version="2.0">
 
-	<info organisation="de.tudresden.inf.lat.jsexp" module="jsexp" />
+	<info organisation="de.tu-dresden.inf.lat.jsexp" module="jsexp" />
 
 	<configurations defaultconfmapping="compile->default;sources;javadoc">
 		<conf name="compile" />
