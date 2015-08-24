@@ -23,6 +23,20 @@ $ cd jsexp
 $ mvn clean install
 ```
 
+To compile the project offline, first download the dependencies:
+```
+$ mvn dependency:go-offline
+```
+and once offline, use:
+```
+$ mvn --offline clean install
+```
+
+The bundles uploaded to [Sonatype](https://oss.sonatype.org/) are created with:
+```
+$ mvn clean install repository:bundle-create -DperformRelease=true
+```
+
 
 ### Contact
 
