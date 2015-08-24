@@ -34,6 +34,7 @@ $ mvn --offline clean install
 
 The bundles uploaded to [Sonatype](https://oss.sonatype.org/) are created with:
 ```
+$ cd jsexp
 $ mvn clean install repository:bundle-create -DperformRelease=true
 ```
 
