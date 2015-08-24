@@ -36,7 +36,7 @@
 </h1>
 
 <p><a href="https://travis-ci.org/julianmendez/jsexp"><img src="https://travis-ci.org/julianmendez/jsexp.png?branch=master" alt="Build Status"></a>
-<a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22de.tudresden.inf.lat.jsexp%22"><img src="https://maven-badges.herokuapp.com/maven-central/de.tudresden.inf.lat.jsexp/jsexp/badge.svg" alt="Maven Central"></a></p>
+<a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22de.tu-dresden.inf.lat.jsexp%22"><img src="https://maven-badges.herokuapp.com/maven-central/de.tu-dresden.inf.lat.jsexp/jsexp/badge.svg" alt="Maven Central"></a></p>
 
 <p><strong>jsexp</strong> is a parser for S-expressions.</p>
 
@@ -55,6 +55,21 @@
 <pre><code>$ git clone https://github.com/julianmendez/jsexp.git
 $ cd jsexp
 $ mvn clean install
+</code></pre>
+
+<p>To compile the project offline, first download the dependencies:</p>
+
+<pre><code>$ mvn dependency:go-offline
+</code></pre>
+
+<p>and once offline, use:</p>
+
+<pre><code>$ mvn --offline clean install
+</code></pre>
+
+<p>The bundles uploaded to <a href="https://oss.sonatype.org/">Sonatype</a> are created with:</p>
+
+<pre><code>$ mvn clean install repository:bundle-create -DperformRelease=true
 </code></pre>
 
 <h3>
