@@ -69,13 +69,12 @@ $ mvn clean install
 
 <p>The bundles uploaded to <a href="https://oss.sonatype.org/">Sonatype</a> are created with:</p>
 
-<pre><code>$ cd jsexp
-$ mvn clean install -DperformRelease=true
+<pre><code>$ mvn clean install -DperformRelease=true
 </code></pre>
 
 <p>and then:</p>
 
-<pre><code>$ cd target
+<pre><code>$ cd jsexp/target
 $ jar -cf bundle.jar jsexp-*
 </code></pre>
 
