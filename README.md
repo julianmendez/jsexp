@@ -9,7 +9,7 @@ Author: [Julian Mendez](http://lat.inf.tu-dresden.de/~mendez)
 
 
 ## Download
-* [jar file](https://repo1.maven.org/maven2/de/tu-dresden/inf/lat/jsexp/jsexp/0.2.2/jsexp-0.2.2.jar)
+* [JAR file](https://repo1.maven.org/maven2/de/tu-dresden/inf/lat/jsexp/jsexp/0.2.2/jsexp-0.2.2.jar)
 * [The Central Repository](https://repo1.maven.org/maven2/de/tu-dresden/inf/lat/jsexp/)
 * [older releases](http://sourceforge.net/projects/jsexp/files/)
 * as dependency:
