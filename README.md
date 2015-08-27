@@ -5,10 +5,8 @@
 
 **jsexp** is a parser for S-expressions.
 
-Author: [Julian Mendez](http://lat.inf.tu-dresden.de/~mendez)
 
-
-## Download
+### Download
 * [JAR file](https://repo1.maven.org/maven2/de/tu-dresden/inf/lat/jsexp/jsexp/0.2.2/jsexp-0.2.2.jar)
 * [The Central Repository](https://repo1.maven.org/maven2/de/tu-dresden/inf/lat/jsexp/)
 * [older releases](http://sourceforge.net/projects/jsexp/files/)
@@ -20,6 +18,10 @@ Author: [Julian Mendez](http://lat.inf.tu-dresden.de/~mendez)
   <version>0.2.2</version>
 </dependency>
 ```
+
+
+### Author
+[Julian Mendez](http://lat.inf.tu-dresden.de/~mendez)
 
 
 ### License
