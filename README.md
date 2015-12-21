@@ -6,7 +6,7 @@
 **jsexp** is a parser for S-expressions.
 
 
-### Download
+## Download
 * [library JAR file](http://sourceforge.net/projects/latitude/files/jsexp/0.2.2/jsexp-0.2.2.jar/download)
 * [The Central Repository](https://repo1.maven.org/maven2/de/tu-dresden/inf/lat/jsexp/)
 * [older releases](http://sourceforge.net/projects/jsexp/files/)
@@ -20,16 +20,16 @@
 ```
 
 
-### Author
+## Author
 [Julian Mendez](http://lat.inf.tu-dresden.de/~mendez)
 
 
-### License
+## License
 
 GNU Lesser General Public License version 3.0 ([LGPLv3](http://www.gnu.org/licenses/lgpl-3.0.txt))
 
 
-### Source code
+## Source code
 
 To checkout and compile the project, use:
 
@@ -59,7 +59,7 @@ $ jar -cf bundle.jar jsexp-*
 ```
 
 
-### Contact
+## Contact
 
 In case you need more information, please contact @julianmendez .
 
