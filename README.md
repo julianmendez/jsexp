@@ -58,6 +58,12 @@ $ cd jsexp/target
 $ jar -cf bundle.jar jsexp-*
 ```
 
+The version number is updated with:
+```
+$ mvn versions:set -DnewVersion=NEW_VERSION
+```
+where *NEW_VERSION* is the new version.
+
 
 ## Contact
 
