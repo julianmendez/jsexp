@@ -7,7 +7,7 @@
 
 
 ### Download
-* [JAR file](https://repo1.maven.org/maven2/de/tu-dresden/inf/lat/jsexp/jsexp/0.2.2/jsexp-0.2.2.jar)
+* [library JAR file](http://sourceforge.net/projects/latitude/files/jsexp/0.2.2/jsexp-0.2.2.jar/download)
 * [The Central Repository](https://repo1.maven.org/maven2/de/tu-dresden/inf/lat/jsexp/)
 * [older releases](http://sourceforge.net/projects/jsexp/files/)
 * as dependency:
