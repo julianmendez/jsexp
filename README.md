@@ -9,7 +9,7 @@
 ## Download
 * [library JAR file](https://sourceforge.net/projects/latitude/files/jsexp/0.2.2/jsexp-0.2.2.jar/download)
 * [The Central Repository](https://repo1.maven.org/maven2/de/tu-dresden/inf/lat/jsexp/)
-* [older releases](http://sourceforge.net/projects/jsexp/files/)
+* [older releases](https://sourceforge.net/projects/jsexp/files/)
 * as dependency:
 ```xml
 <dependency>
@@ -27,6 +27,10 @@
 ## License
 
 GNU Lesser General Public License version 3.0 ([LGPLv3](http://www.gnu.org/licenses/lgpl-3.0.txt))
+
+
+## Release notes
+See [release notes](https://github.com/julianmendez/jsexp/blob/master/RELEASE-NOTES.md).
 
 
 ## Source code
