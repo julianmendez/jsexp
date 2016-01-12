@@ -40,16 +40,16 @@ class SexpTokenizer {
 		COMMENT, QMARK, QMARK_BSLASH, SYMBOL, VBAR, VBAR_BSLASH
 	}
 
-	public static final char commentChar = Token.commentChar;
-	public static final char escapeChar = Token.escapeChar;
-	public static final char leftParenthesisChar = Token.leftParenthesisChar;
-	public static final char newLineChar = '\n';
-	public static final char quotationMarkChar = Token.quotationMarkChar;
-	public static final char returnChar = '\r';
-	public static final char rightParenthesisChar = Token.rightParenthesisChar;
-	public static final char spaceChar = ' ';
-	public static final char tabChar = '\t';
-	public static final char verticalBarChar = Token.verticalBarChar;
+	public static final char COMMENT_CHAR = Token.COMMENT_CHAR;
+	public static final char ESCAPE_CHAR = Token.ESCAPE_CHAR;
+	public static final char LEFT_PARENTHESIS_CHAR = Token.LEFT_PARENTHESIS_CHAR;
+	public static final char NEW_LINE_CHAR = '\n';
+	public static final char QUOTATION_MARK_CHAR = Token.QUOTATION_MARK_CHAR;
+	public static final char RETURN_CHAR = '\r';
+	public static final char RIGHT_PARENTHESIS_CHAR = Token.RIGHT_PARENTHESIS_CHAR;
+	public static final char SPACE_CHAR = ' ';
+	public static final char TAB_CHAR = '\t';
+	public static final char VERTICAL_BAR_CHAR = Token.VERTICAL_BAR_CHAR;
 
 	/**
 	 * Returns a list of tokens after processing an input stream.
@@ -161,7 +161,7 @@ class SexpTokenizer {
 	}
 
 	private void readComment(char ch) {
-		if (ch == newLineChar) {
+		if (ch == NEW_LINE_CHAR) {
 			flush();
 			this.lineNumber++;
 			this.state = State.SYMBOL;
@@ -172,11 +172,11 @@ class SexpTokenizer {
 
 	private void readQuotationMark(char ch) {
 		this.currentToken.append(ch);
-		if (ch == newLineChar) {
+		if (ch == NEW_LINE_CHAR) {
 			this.lineNumber++;
-		} else if (ch == escapeChar) {
+		} else if (ch == ESCAPE_CHAR) {
 			this.state = State.QMARK_BSLASH;
-		} else if (ch == quotationMarkChar) {
+		} else if (ch == QUOTATION_MARK_CHAR) {
 			flush();
 			this.state = State.SYMBOL;
 		}
@@ -184,37 +184,37 @@ class SexpTokenizer {
 
 	private void readQuotationMarkBackslash(char ch) {
 		this.currentToken.append(ch);
-		if (ch == newLineChar) {
+		if (ch == NEW_LINE_CHAR) {
 			this.lineNumber++;
 		}
 		this.state = State.QMARK;
 	}
 
 	private void readSymbol(char ch) {
-		if (ch == newLineChar) {
+		if (ch == NEW_LINE_CHAR) {
 			flush();
 			this.lineNumber++;
-		} else if (ch == spaceChar || ch == tabChar || ch == returnChar) {
+		} else if (ch == SPACE_CHAR || ch == TAB_CHAR || ch == RETURN_CHAR) {
 			flush();
-		} else if (ch == commentChar) {
+		} else if (ch == COMMENT_CHAR) {
 			flush();
 			this.currentToken.append(ch);
 			this.state = State.COMMENT;
-		} else if (ch == leftParenthesisChar) {
+		} else if (ch == LEFT_PARENTHESIS_CHAR) {
 			this.depth++;
 			flush();
 			this.currentToken.append(ch);
 			flush();
-		} else if (ch == rightParenthesisChar) {
+		} else if (ch == RIGHT_PARENTHESIS_CHAR) {
 			this.depth--;
 			flush();
 			this.currentToken.append(ch);
 			flush();
-		} else if (ch == quotationMarkChar) {
+		} else if (ch == QUOTATION_MARK_CHAR) {
 			flush();
 			this.currentToken.append(ch);
 			this.state = State.QMARK;
-		} else if (ch == verticalBarChar) {
+		} else if (ch == VERTICAL_BAR_CHAR) {
 			flush();
 			this.currentToken.append(ch);
 			this.state = State.VBAR;
@@ -225,11 +225,11 @@ class SexpTokenizer {
 
 	private void readVerticalBar(char ch) {
 		this.currentToken.append(ch);
-		if (ch == newLineChar) {
+		if (ch == NEW_LINE_CHAR) {
 			this.lineNumber++;
-		} else if (ch == escapeChar) {
+		} else if (ch == ESCAPE_CHAR) {
 			this.state = State.VBAR_BSLASH;
-		} else if (ch == verticalBarChar) {
+		} else if (ch == VERTICAL_BAR_CHAR) {
 			flush();
 			this.state = State.SYMBOL;
 		}
@@ -237,7 +237,7 @@ class SexpTokenizer {
 
 	private void readVerticalBarBackslash(char ch) {
 		this.currentToken.append(ch);
-		if (ch == newLineChar) {
+		if (ch == NEW_LINE_CHAR) {
 			this.lineNumber++;
 		}
 		this.state = State.VBAR;

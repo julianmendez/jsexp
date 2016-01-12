@@ -33,8 +33,8 @@ import java.util.Stack;
  */
 public class SexpList implements Sexp {
 
-	private static final String newLine = "\n";
-	private static final String tabulation = "  ";
+	private static final String NEW_LINE = "\n";
+	private static final String TABULATION = "  ";
 	private int depth = 0;
 	private List<Sexp> rep = new ArrayList<Sexp>();
 
@@ -156,14 +156,14 @@ public class SexpList implements Sexp {
 		if (expr.isAtomic()) {
 			ret0.append(expr.toIndentedString());
 		} else if (expr.getLength() == 0) {
-			ret0.append(Token.leftParenthesisChar);
-			ret0.append(Token.rightParenthesisChar);
+			ret0.append(Token.LEFT_PARENTHESIS_CHAR);
+			ret0.append(Token.RIGHT_PARENTHESIS_CHAR);
 		} else {
-			ret0.append(newLine);
+			ret0.append(NEW_LINE);
 			for (int i = 0; i < depth; i++) {
-				ret0.append(tabulation);
+				ret0.append(TABULATION);
 			}
-			ret0.append(Token.leftParenthesisChar);
+			ret0.append(Token.LEFT_PARENTHESIS_CHAR);
 			for (Iterator<Sexp> it = expr.iterator(); it.hasNext();) {
 				Sexp current = it.next();
 				ret0.append(toIndentedString(current, depth + 1));
@@ -171,7 +171,7 @@ public class SexpList implements Sexp {
 					ret0.append(' ');
 				}
 			}
-			ret0.append(Token.rightParenthesisChar);
+			ret0.append(Token.RIGHT_PARENTHESIS_CHAR);
 		}
 		return ret0.toString();
 	}
@@ -179,7 +179,7 @@ public class SexpList implements Sexp {
 	@Override
 	public String toString() {
 		StringBuffer ret0 = new StringBuffer();
-		ret0.append(Token.leftParenthesisChar);
+		ret0.append(Token.LEFT_PARENTHESIS_CHAR);
 		for (Iterator<Sexp> it = this.rep.iterator(); it.hasNext();) {
 			Sexp expr = it.next();
 			ret0.append(expr.toString());
@@ -187,7 +187,7 @@ public class SexpList implements Sexp {
 				ret0.append(' ');
 			}
 		}
-		ret0.append(Token.rightParenthesisChar);
+		ret0.append(Token.RIGHT_PARENTHESIS_CHAR);
 		return ret0.toString();
 	}
 

@@ -29,12 +29,12 @@ package de.tudresden.inf.lat.jsexp;
  */
 class Token {
 
-	public static final char commentChar = ';';
-	public static final char escapeChar = '\\';
-	public static final char leftParenthesisChar = '(';
-	public static final char quotationMarkChar = '\"';
-	public static final char rightParenthesisChar = ')';
-	public static final char verticalBarChar = '|';
+	public static final char COMMENT_CHAR = ';';
+	public static final char ESCAPE_CHAR = '\\';
+	public static final char LEFT_PARENTHESIS_CHAR = '(';
+	public static final char QUOTATION_MARK_CHAR = '\"';
+	public static final char RIGHT_PARENTHESIS_CHAR = ')';
+	public static final char VERTICAL_BAR_CHAR = '|';
 
 	private int location = -1;
 	private final StringBuffer sbuf;
@@ -126,7 +126,7 @@ class Token {
 	 * @return <code>true</code> if and only if this token is a comment
 	 */
 	public boolean isComment() {
-		return getText().startsWith("" + commentChar);
+		return getText().startsWith("" + COMMENT_CHAR);
 	}
 
 	/**
@@ -135,7 +135,7 @@ class Token {
 	 * @return <code>true</code> if and only if this token is a left parenthesis
 	 */
 	public boolean isLeftParenthesis() {
-		return getText().equals("" + leftParenthesisChar);
+		return getText().equals("" + LEFT_PARENTHESIS_CHAR);
 	}
 
 	/**
@@ -144,8 +144,8 @@ class Token {
 	 * @return <code>true</code> if and only if this token is a quotation mark
 	 */
 	public boolean isQuotationMarkToken() {
-		return getText().startsWith("" + quotationMarkChar)
-				&& getText().endsWith("" + quotationMarkChar);
+		return getText().startsWith("" + QUOTATION_MARK_CHAR)
+				&& getText().endsWith("" + QUOTATION_MARK_CHAR);
 	}
 
 	/**
@@ -155,7 +155,7 @@ class Token {
 	 *         parenthesis
 	 */
 	public boolean isRightParenthesis() {
-		return getText().equals("" + rightParenthesisChar);
+		return getText().equals("" + RIGHT_PARENTHESIS_CHAR);
 	}
 
 	/**
@@ -164,8 +164,8 @@ class Token {
 	 * @return <code>true</code> if and only if this token is is a vertical bar
 	 */
 	public boolean isVerticalBarToken() {
-		return getText().startsWith("" + verticalBarChar)
-				&& getText().endsWith("" + verticalBarChar);
+		return getText().startsWith("" + VERTICAL_BAR_CHAR)
+				&& getText().endsWith("" + VERTICAL_BAR_CHAR);
 	}
 
 	/**
