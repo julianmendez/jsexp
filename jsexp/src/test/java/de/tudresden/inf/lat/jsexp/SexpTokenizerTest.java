@@ -26,10 +26,12 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.TestCase;
+import org.junit.Assert;
+import org.junit.Test;
 
-public class SexpTokenizerTest extends TestCase {
+public class SexpTokenizerTest {
 
+	@Test
 	public void testBasic() throws SexpParserException, IOException {
 		String testStr = "( defun test () \"hi there\")";
 		StringReader input = new StringReader(testStr);
@@ -42,9 +44,10 @@ public class SexpTokenizerTest extends TestCase {
 		expectedList.add(new Token("\"hi there\"", 1));
 		expectedList.add(new Token(")", 1));
 		List<Token> parsedList = SexpTokenizer.tokenize(input);
-		assertEquals(expectedList, parsedList);
+		Assert.assertEquals(expectedList, parsedList);
 	}
 
+	@Test
 	public void testBlanks() throws SexpParserException, IOException {
 		String testStr = "  \t   (  defun     test ( \t ) \n \"hi there\"   )   \t ";
 		StringReader input = new StringReader(testStr);
@@ -57,9 +60,10 @@ public class SexpTokenizerTest extends TestCase {
 		expectedList.add(new Token("\"hi there\"", 2));
 		expectedList.add(new Token(")", 2));
 		List<Token> parsedList = SexpTokenizer.tokenize(input);
-		assertEquals(expectedList, parsedList);
+		Assert.assertEquals(expectedList, parsedList);
 	}
 
+	@Test
 	public void testComments() throws SexpParserException, IOException {
 		String testStr = "( defun \n test;no comments\n () \"hi ;no comment here \n there\") ;this is a comment";
 		StringReader input = new StringReader(testStr);
@@ -73,9 +77,10 @@ public class SexpTokenizerTest extends TestCase {
 		expectedList.add(new Token("\"hi ;no comment here \n there\"", 4));
 		expectedList.add(new Token(")", 4));
 		List<Token> parsedList = SexpTokenizer.tokenize(input);
-		assertEquals(expectedList, parsedList);
+		Assert.assertEquals(expectedList, parsedList);
 	}
 
+	@Test
 	public void testLineNumbers() throws SexpParserException, IOException {
 		String testStr = "( \ndefun \ntest \n(\n) \"hi there\")";
 		StringReader input = new StringReader(testStr);
@@ -88,9 +93,10 @@ public class SexpTokenizerTest extends TestCase {
 		expectedList.add(new Token("\"hi there\"", 5));
 		expectedList.add(new Token(")", 5));
 		List<Token> parsedList = SexpTokenizer.tokenize(input);
-		assertEquals(expectedList, parsedList);
+		Assert.assertEquals(expectedList, parsedList);
 	}
 
+	@Test
 	public void testNewLineInText() throws SexpParserException, IOException {
 		String testStr = "( defun test () \"hi \n\nthere\")";
 		StringReader input = new StringReader(testStr);
@@ -103,9 +109,10 @@ public class SexpTokenizerTest extends TestCase {
 		expectedList.add(new Token("\"hi \n\nthere\"", 3));
 		expectedList.add(new Token(")", 3));
 		List<Token> parsedList = SexpTokenizer.tokenize(input);
-		assertEquals(expectedList, parsedList);
+		Assert.assertEquals(expectedList, parsedList);
 	}
 
+	@Test
 	public void testNoSpaces() throws SexpParserException, IOException {
 		String testStr = "\t(defun\ttest(\t)\"hi-there\"\n)\t";
 		StringReader input = new StringReader(testStr);
@@ -118,11 +125,11 @@ public class SexpTokenizerTest extends TestCase {
 		expectedList.add(new Token("\"hi-there\"", 1));
 		expectedList.add(new Token(")", 2));
 		List<Token> parsedList = SexpTokenizer.tokenize(input);
-		assertEquals(expectedList, parsedList);
+		Assert.assertEquals(expectedList, parsedList);
 	}
 
-	public void testQuotationMarksBetweenVbars() throws SexpParserException,
-			IOException {
+	@Test
+	public void testQuotationMarksBetweenVbars() throws SexpParserException, IOException {
 		String testStr = "( defun\ttest () | I'm  \" a symbol |\n)";
 		StringReader input = new StringReader(testStr);
 		List<Token> expectedList = new ArrayList<Token>();
@@ -134,11 +141,11 @@ public class SexpTokenizerTest extends TestCase {
 		expectedList.add(new Token("| I'm  \" a symbol |", 1));
 		expectedList.add(new Token(")", 2));
 		List<Token> parsedList = SexpTokenizer.tokenize(input);
-		assertEquals(expectedList, parsedList);
+		Assert.assertEquals(expectedList, parsedList);
 	}
 
-	public void testQuotationMarksInQuotedText() throws SexpParserException,
-			IOException {
+	@Test
+	public void testQuotationMarksInQuotedText() throws SexpParserException, IOException {
 		String testStr = "( defun\ttest () \"hi \\\" there\"\n)";
 		StringReader input = new StringReader(testStr);
 		List<Token> expectedList = new ArrayList<Token>();
@@ -150,34 +157,35 @@ public class SexpTokenizerTest extends TestCase {
 		expectedList.add(new Token("\"hi \\\" there\"", 1));
 		expectedList.add(new Token(")", 2));
 		List<Token> parsedList = SexpTokenizer.tokenize(input);
-		assertEquals(expectedList, parsedList);
+		Assert.assertEquals(expectedList, parsedList);
 	}
 
+	@Test
 	public void testUnbalancedQuotes() throws SexpParserException, IOException {
 		String testStr = "( defun test () \"hi there)";
 		StringReader input = new StringReader(testStr);
 		try {
 			SexpTokenizer.tokenize(input);
-			assertTrue(false);
+			Assert.assertTrue(false);
 		} catch (SexpParserException e) {
-			assertTrue(true);
+			Assert.assertTrue(true);
 		}
 	}
 
-	public void testUnbalancedVerticalBars() throws SexpParserException,
-			IOException {
+	@Test
+	public void testUnbalancedVerticalBars() throws SexpParserException, IOException {
 		String testStr = "( defun test () |hi there)";
 		StringReader input = new StringReader(testStr);
 		try {
 			SexpTokenizer.tokenize(input);
-			assertTrue(false);
+			Assert.assertTrue(false);
 		} catch (SexpParserException e) {
-			assertTrue(true);
+			Assert.assertTrue(true);
 		}
 	}
 
-	public void testVerticalBarBetweenVbars() throws SexpParserException,
-			IOException {
+	@Test
+	public void testVerticalBarBetweenVbars() throws SexpParserException, IOException {
 		String testStr = "( defun\ttest () |I'm \\| a symbol|\n)";
 		StringReader input = new StringReader(testStr);
 		List<Token> expectedList = new ArrayList<Token>();
@@ -189,17 +197,18 @@ public class SexpTokenizerTest extends TestCase {
 		expectedList.add(new Token("|I'm \\| a symbol|", 1));
 		expectedList.add(new Token(")", 2));
 		List<Token> parsedList = SexpTokenizer.tokenize(input);
-		assertEquals(expectedList, parsedList);
+		Assert.assertEquals(expectedList, parsedList);
 	}
 
+	@Test
 	public void testWrongParentheses() throws SexpParserException, IOException {
 		String testStr = ") defun\ttest () \"hi \\\" there\"\n(";
 		StringReader input = new StringReader(testStr);
 		try {
 			SexpTokenizer.tokenize(input);
-			assertTrue(false);
+			Assert.assertTrue(false);
 		} catch (SexpParserException e) {
-			assertTrue(true);
+			Assert.assertTrue(true);
 		}
 	}
 
