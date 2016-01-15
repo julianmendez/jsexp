@@ -45,7 +45,8 @@ public interface Sexp extends Iterable<Sexp> {
 	/**
 	 * Gets an element given by index.
 	 * 
-	 * @param index index
+	 * @param index
+	 *            index
 	 * @throws IndexOutOfBoundsException
 	 *             if the Sexp object is atomic (a SexpString) or it is a
 	 *             SexpList but the index is out of its bounds.

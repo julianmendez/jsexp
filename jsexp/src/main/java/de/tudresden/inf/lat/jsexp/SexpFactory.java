@@ -70,8 +70,7 @@ public class SexpFactory {
 	 * @throws IOException
 	 *             if there is any problem reading the input stream.
 	 */
-	public static Sexp parse(InputStream in) throws SexpParserException,
-			IOException {
+	public static Sexp parse(InputStream in) throws SexpParserException, IOException {
 		return parse(new InputStreamReader(in));
 	}
 
@@ -101,8 +100,7 @@ public class SexpFactory {
 			ret = new SexpList(tokenList);
 		}
 		if (ret == null) {
-			throw new SexpParserException("Expression '" + tokenList.toString()
-					+ "' cannot be parsed.");
+			throw new SexpParserException("Expression '" + tokenList.toString() + "' cannot be parsed.");
 		}
 		return ret;
 	}

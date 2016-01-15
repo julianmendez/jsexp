@@ -62,8 +62,7 @@ class SexpTokenizer {
 	 * @throws IOException
 	 *             if the input stream cannot be properly read
 	 */
-	public static List<Token> tokenize(InputStream in)
-			throws SexpParserException, IOException {
+	public static List<Token> tokenize(InputStream in) throws SexpParserException, IOException {
 		return SexpTokenizer.tokenize(in);
 	}
 
@@ -78,8 +77,7 @@ class SexpTokenizer {
 	 * @throws IOException
 	 *             if the stream cannot be properly read
 	 */
-	public static List<Token> tokenize(Reader in) throws SexpParserException,
-			IOException {
+	public static List<Token> tokenize(Reader in) throws SexpParserException, IOException {
 		if (in == null) {
 			throw new IllegalArgumentException("Null argument.");
 		}
@@ -111,14 +109,11 @@ class SexpTokenizer {
 
 	private void close() throws SexpParserException {
 		flush();
-		if (this.state.equals(State.QMARK)
-				|| this.state.equals(State.QMARK_BSLASH)) {
-			throw new SexpParserException("Missing quotation mark at line "
-					+ this.lineNumber);
+		if (this.state.equals(State.QMARK) || this.state.equals(State.QMARK_BSLASH)) {
+			throw new SexpParserException("Missing quotation mark at line " + this.lineNumber);
 		}
 		if (this.depth != 0) {
-			throw new SexpParserException("Unbalanced parenthesis at line "
-					+ this.lineNumber + ".");
+			throw new SexpParserException("Unbalanced parenthesis at line " + this.lineNumber + ".");
 		}
 	}
 

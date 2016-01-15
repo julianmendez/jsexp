@@ -56,8 +56,7 @@ class Token {
 	 */
 	public Token(String str, int loc) {
 		if (str == null) {
-			throw new IllegalArgumentException(
-					"Cannot create a token using a null string.");
+			throw new IllegalArgumentException("Cannot create a token using a null string.");
 		}
 
 		this.sbuf = new StringBuffer(str);
@@ -91,8 +90,7 @@ class Token {
 		boolean ret = (this == o);
 		if (!ret && o instanceof Token) {
 			Token other = (Token) o;
-			ret = getText().equals(other.getText())
-					&& getLocation() == other.getLocation();
+			ret = getText().equals(other.getText()) && getLocation() == other.getLocation();
 		}
 		return ret;
 	}
@@ -144,8 +142,7 @@ class Token {
 	 * @return <code>true</code> if and only if this token is a quotation mark
 	 */
 	public boolean isQuotationMarkToken() {
-		return getText().startsWith("" + QUOTATION_MARK_CHAR)
-				&& getText().endsWith("" + QUOTATION_MARK_CHAR);
+		return getText().startsWith("" + QUOTATION_MARK_CHAR) && getText().endsWith("" + QUOTATION_MARK_CHAR);
 	}
 
 	/**
@@ -164,8 +161,7 @@ class Token {
 	 * @return <code>true</code> if and only if this token is is a vertical bar
 	 */
 	public boolean isVerticalBarToken() {
-		return getText().startsWith("" + VERTICAL_BAR_CHAR)
-				&& getText().endsWith("" + VERTICAL_BAR_CHAR);
+		return getText().startsWith("" + VERTICAL_BAR_CHAR) && getText().endsWith("" + VERTICAL_BAR_CHAR);
 	}
 
 	/**
@@ -195,8 +191,7 @@ class Token {
 	 */
 	public void setText(String str) {
 		if (str == null) {
-			throw new IllegalArgumentException(
-					"Cannot create a token using a null string.");
+			throw new IllegalArgumentException("Cannot create a token using a null string.");
 		}
 		this.sbuf.setLength(0);
 		this.sbuf.append(str);
