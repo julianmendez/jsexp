@@ -31,6 +31,9 @@ import org.junit.Test;
 
 public class SexpTokenizerTest {
 
+	public SexpTokenizerTest() {
+	}
+
 	@Test
 	public void testBasic() throws SexpParserException, IOException {
 		String testStr = "( defun test () \"hi there\")";

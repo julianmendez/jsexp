@@ -27,7 +27,16 @@ import java.io.StringReader;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * Test class for {@link Sexp}.
+ * 
+ * @author Julian Mendez
+ *
+ */
 public class SexpTest {
+
+	public SexpTest() {
+	}
 
 	@Test
 	public void testDepth() throws SexpParserException, IOException {
