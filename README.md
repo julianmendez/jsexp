@@ -1,6 +1,7 @@
 # [jsexp](https://julianmendez.github.io/jsexp)
 
 [![Build Status](https://travis-ci.org/julianmendez/jsexp.png?branch=master)](https://travis-ci.org/julianmendez/jsexp)
+[![Coverage Status](https://coveralls.io/repos/github/julianmendez/jsexp/badge.svg?branch=master)](https://coveralls.io/github/julianmendez/jsexp?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.tu-dresden.inf.lat.jsexp/jsexp/badge.svg)](http://search.maven.org/#search|ga|1|g%3A%22de.tu-dresden.inf.lat.jsexp%22)
 
 **jsexp** is a parser for S-expressions.
