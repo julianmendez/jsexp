@@ -99,7 +99,7 @@ class SexpTokenizer {
 	private int depth = 0;
 	private int lineNumber = 1;
 	private State state = State.SYMBOL;
-	private List<Token> tokenList = new ArrayList<Token>();
+	private List<Token> tokenList = new ArrayList<>();
 
 	/**
 	 * Constructs a new S-expression tokenizer.

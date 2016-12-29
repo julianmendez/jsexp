@@ -38,7 +38,7 @@ public class SexpTokenizerTest {
 	public void testBasic() throws SexpParserException, IOException {
 		String testStr = "( defun test () \"hi there\")";
 		StringReader input = new StringReader(testStr);
-		List<Token> expectedList = new ArrayList<Token>();
+		List<Token> expectedList = new ArrayList<>();
 		expectedList.add(new Token("(", 1));
 		expectedList.add(new Token("defun", 1));
 		expectedList.add(new Token("test", 1));
@@ -54,7 +54,7 @@ public class SexpTokenizerTest {
 	public void testBlanks() throws SexpParserException, IOException {
 		String testStr = "  \t   (  defun     test ( \t ) \n \"hi there\"   )   \t ";
 		StringReader input = new StringReader(testStr);
-		List<Token> expectedList = new ArrayList<Token>();
+		List<Token> expectedList = new ArrayList<>();
 		expectedList.add(new Token("(", 1));
 		expectedList.add(new Token("defun", 1));
 		expectedList.add(new Token("test", 1));
@@ -70,7 +70,7 @@ public class SexpTokenizerTest {
 	public void testComments() throws SexpParserException, IOException {
 		String testStr = "( defun \n test;no comments\n () \"hi ;no comment here \n there\") ;this is a comment";
 		StringReader input = new StringReader(testStr);
-		List<Token> expectedList = new ArrayList<Token>();
+		List<Token> expectedList = new ArrayList<>();
 		expectedList.add(new Token("(", 1));
 		expectedList.add(new Token("defun", 1));
 		expectedList.add(new Token("test", 2));
@@ -87,7 +87,7 @@ public class SexpTokenizerTest {
 	public void testLineNumbers() throws SexpParserException, IOException {
 		String testStr = "( \ndefun \ntest \n(\n) \"hi there\")";
 		StringReader input = new StringReader(testStr);
-		List<Token> expectedList = new ArrayList<Token>();
+		List<Token> expectedList = new ArrayList<>();
 		expectedList.add(new Token("(", 1));
 		expectedList.add(new Token("defun", 2));
 		expectedList.add(new Token("test", 3));
@@ -103,7 +103,7 @@ public class SexpTokenizerTest {
 	public void testNewLineInText() throws SexpParserException, IOException {
 		String testStr = "( defun test () \"hi \n\nthere\")";
 		StringReader input = new StringReader(testStr);
-		List<Token> expectedList = new ArrayList<Token>();
+		List<Token> expectedList = new ArrayList<>();
 		expectedList.add(new Token("(", 1));
 		expectedList.add(new Token("defun", 1));
 		expectedList.add(new Token("test", 1));
@@ -119,7 +119,7 @@ public class SexpTokenizerTest {
 	public void testNoSpaces() throws SexpParserException, IOException {
 		String testStr = "\t(defun\ttest(\t)\"hi-there\"\n)\t";
 		StringReader input = new StringReader(testStr);
-		List<Token> expectedList = new ArrayList<Token>();
+		List<Token> expectedList = new ArrayList<>();
 		expectedList.add(new Token("(", 1));
 		expectedList.add(new Token("defun", 1));
 		expectedList.add(new Token("test", 1));
@@ -135,7 +135,7 @@ public class SexpTokenizerTest {
 	public void testQuotationMarksBetweenVbars() throws SexpParserException, IOException {
 		String testStr = "( defun\ttest () | I'm  \" a symbol |\n)";
 		StringReader input = new StringReader(testStr);
-		List<Token> expectedList = new ArrayList<Token>();
+		List<Token> expectedList = new ArrayList<>();
 		expectedList.add(new Token("(", 1));
 		expectedList.add(new Token("defun", 1));
 		expectedList.add(new Token("test", 1));
@@ -151,7 +151,7 @@ public class SexpTokenizerTest {
 	public void testQuotationMarksInQuotedText() throws SexpParserException, IOException {
 		String testStr = "( defun\ttest () \"hi \\\" there\"\n)";
 		StringReader input = new StringReader(testStr);
-		List<Token> expectedList = new ArrayList<Token>();
+		List<Token> expectedList = new ArrayList<>();
 		expectedList.add(new Token("(", 1));
 		expectedList.add(new Token("defun", 1));
 		expectedList.add(new Token("test", 1));
@@ -191,7 +191,7 @@ public class SexpTokenizerTest {
 	public void testVerticalBarBetweenVbars() throws SexpParserException, IOException {
 		String testStr = "( defun\ttest () |I'm \\| a symbol|\n)";
 		StringReader input = new StringReader(testStr);
-		List<Token> expectedList = new ArrayList<Token>();
+		List<Token> expectedList = new ArrayList<>();
 		expectedList.add(new Token("(", 1));
 		expectedList.add(new Token("defun", 1));
 		expectedList.add(new Token("test", 1));

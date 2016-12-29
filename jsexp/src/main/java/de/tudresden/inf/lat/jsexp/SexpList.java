@@ -36,7 +36,7 @@ public class SexpList implements Sexp {
 	private static final String NEW_LINE = "\n";
 	private static final String TABULATION = "  ";
 	private int depth = 0;
-	private List<Sexp> rep = new ArrayList<Sexp>();
+	private List<Sexp> rep = new ArrayList<>();
 
 	/**
 	 * Creates an empty non-atomic S-expression.
