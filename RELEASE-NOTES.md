@@ -25,8 +25,8 @@
 ### v0.2.1
 *(2015-07-13)*
 * Parsing accepts a `Reader` and an `InputStream`.
-* Can be compiled using [Apache Ant + Apache Ivy](http://ant.apache.org/ivy/) and uses a [generic Ant file](https://github.com/julianmendez/genericantfile) to build the project.
-* Can be compiled using [Apache Maven](http://maven.apache.org/) and the compiled files are deployed in [Sonatype](https://oss.sonatype.org/).
+* Can be compiled using [Apache Ant + Apache Ivy](https://ant.apache.org/ivy/) and uses a [generic Ant file](https://github.com/julianmendez/genericantfile) to build the project.
+* Can be compiled using [Apache Maven](https://maven.apache.org/) and the compiled files are deployed in [Sonatype](https://oss.sonatype.org/).
 
 
 ### v0.2.0

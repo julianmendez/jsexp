@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/julianmendez/jsexp.png?branch=master)](https://travis-ci.org/julianmendez/jsexp)
 [![Coverage Status](https://coveralls.io/repos/github/julianmendez/jsexp/badge.svg?branch=master)](https://coveralls.io/github/julianmendez/jsexp?branch=master)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.tu-dresden.inf.lat.jsexp/jsexp/badge.svg)](http://search.maven.org/#search|ga|1|g%3A%22de.tu-dresden.inf.lat.jsexp%22)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.tu-dresden.inf.lat.jsexp/jsexp/badge.svg)](https://search.maven.org/#search|ga|1|g%3A%22de.tu-dresden.inf.lat.jsexp%22)
 
 **jsexp** is a parser for S-expressions.
 
@@ -25,12 +25,12 @@
 
 ## Author
 
-[Julian Mendez](http://lat.inf.tu-dresden.de/~mendez)
+[Julian Mendez](https://lat.inf.tu-dresden.de/~mendez)
 
 
 ## License
 
-GNU Lesser General Public License version 3.0 ([LGPLv3](https://www.gnu.org/licenses/lgpl-3.0.txt))
+GNU Lesser General Public License version 3.0 ([LGPLv3](http://www.gnu.org/licenses/lgpl-3.0.txt))
 
 
 ## Release notes
