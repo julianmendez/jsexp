@@ -35,7 +35,7 @@ GNU Lesser General Public License version 3.0 ([LGPLv3](http://www.gnu.org/licen
 
 ## Release notes
 
-See [release notes](https://github.com/julianmendez/jsexp/blob/master/RELEASE-NOTES.md).
+See [release notes](https://julianmendez.github.io/jsexp/RELEASE-NOTES.html).
 
 
 ## Source code
