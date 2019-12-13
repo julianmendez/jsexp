@@ -1,4 +1,5 @@
 
+
 ## Release notes
 
 | version | release date | Java |
@@ -8,8 +9,6 @@
 | v0.2.1  | 2015-07-13   | 7    |
 | v0.2.0  | 2012-04-26   | 6    |
 | v0.1.0  | 2009-05-07   | 6    |
-
-
 
 
 ### v0.3.0
@@ -37,6 +36,5 @@
 ### v0.1.0
 *(2009-05-07)*
 * First version that is completely operational, conceived as a library for the [CEL Plug-in](https://github.com/julianmendez/cel).
-
 
 
