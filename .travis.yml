@@ -15,5 +15,7 @@ jdk:
 
 install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=false -B -V
+  - cd jsexp ; ant
+  - cd jsexp ; gradle clean compileJava compileTestJava test
 
 
