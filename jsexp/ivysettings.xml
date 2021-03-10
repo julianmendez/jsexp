@@ -7,7 +7,7 @@
 				<!-- <artifact pattern="${ivy.settings.dir}/target/jars/lib/[orgPath]/[module]/[revision]/[artifact]-[revision].[ext]" /> -->
 				<artifact pattern="${ivy.settings.dir}/../[artifact]/target/[artifact]-[revision].[ext]" />
 			</filesystem>
-			<ibiblio name="central" m2compatible="true" />
+			<ibiblio name="central" m2compatible="true" root="https://repo1.maven.org/maven2/" />
 		</chain>
 	</resolvers>
 </ivysettings>
