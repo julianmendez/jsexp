@@ -17,6 +17,5 @@ install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=false -B -V
   - cd jsexp
   - ant
-  - gradle clean compileJava compileTestJava test
 
 
