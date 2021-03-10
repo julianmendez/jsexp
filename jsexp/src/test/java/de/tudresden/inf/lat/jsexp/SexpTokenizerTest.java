@@ -26,8 +26,8 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class SexpTokenizerTest {
 
@@ -47,7 +47,7 @@ public class SexpTokenizerTest {
 		expectedList.add(new Token("\"hi there\"", 1));
 		expectedList.add(new Token(")", 1));
 		List<Token> parsedList = SexpTokenizer.tokenize(input);
-		Assert.assertEquals(expectedList, parsedList);
+		Assertions.assertEquals(expectedList, parsedList);
 	}
 
 	@Test
@@ -63,7 +63,7 @@ public class SexpTokenizerTest {
 		expectedList.add(new Token("\"hi there\"", 2));
 		expectedList.add(new Token(")", 2));
 		List<Token> parsedList = SexpTokenizer.tokenize(input);
-		Assert.assertEquals(expectedList, parsedList);
+		Assertions.assertEquals(expectedList, parsedList);
 	}
 
 	@Test
@@ -80,7 +80,7 @@ public class SexpTokenizerTest {
 		expectedList.add(new Token("\"hi ;no comment here \n there\"", 4));
 		expectedList.add(new Token(")", 4));
 		List<Token> parsedList = SexpTokenizer.tokenize(input);
-		Assert.assertEquals(expectedList, parsedList);
+		Assertions.assertEquals(expectedList, parsedList);
 	}
 
 	@Test
@@ -96,7 +96,7 @@ public class SexpTokenizerTest {
 		expectedList.add(new Token("\"hi there\"", 5));
 		expectedList.add(new Token(")", 5));
 		List<Token> parsedList = SexpTokenizer.tokenize(input);
-		Assert.assertEquals(expectedList, parsedList);
+		Assertions.assertEquals(expectedList, parsedList);
 	}
 
 	@Test
@@ -112,7 +112,7 @@ public class SexpTokenizerTest {
 		expectedList.add(new Token("\"hi \n\nthere\"", 3));
 		expectedList.add(new Token(")", 3));
 		List<Token> parsedList = SexpTokenizer.tokenize(input);
-		Assert.assertEquals(expectedList, parsedList);
+		Assertions.assertEquals(expectedList, parsedList);
 	}
 
 	@Test
@@ -128,7 +128,7 @@ public class SexpTokenizerTest {
 		expectedList.add(new Token("\"hi-there\"", 1));
 		expectedList.add(new Token(")", 2));
 		List<Token> parsedList = SexpTokenizer.tokenize(input);
-		Assert.assertEquals(expectedList, parsedList);
+		Assertions.assertEquals(expectedList, parsedList);
 	}
 
 	@Test
@@ -144,7 +144,7 @@ public class SexpTokenizerTest {
 		expectedList.add(new Token("| I'm  \" a symbol |", 1));
 		expectedList.add(new Token(")", 2));
 		List<Token> parsedList = SexpTokenizer.tokenize(input);
-		Assert.assertEquals(expectedList, parsedList);
+		Assertions.assertEquals(expectedList, parsedList);
 	}
 
 	@Test
@@ -160,7 +160,7 @@ public class SexpTokenizerTest {
 		expectedList.add(new Token("\"hi \\\" there\"", 1));
 		expectedList.add(new Token(")", 2));
 		List<Token> parsedList = SexpTokenizer.tokenize(input);
-		Assert.assertEquals(expectedList, parsedList);
+		Assertions.assertEquals(expectedList, parsedList);
 	}
 
 	@Test
@@ -169,9 +169,9 @@ public class SexpTokenizerTest {
 		StringReader input = new StringReader(testStr);
 		try {
 			SexpTokenizer.tokenize(input);
-			Assert.assertTrue(false);
+			Assertions.assertTrue(false);
 		} catch (SexpParserException e) {
-			Assert.assertTrue(true);
+			Assertions.assertTrue(true);
 		}
 	}
 
@@ -181,9 +181,9 @@ public class SexpTokenizerTest {
 		StringReader input = new StringReader(testStr);
 		try {
 			SexpTokenizer.tokenize(input);
-			Assert.assertTrue(false);
+			Assertions.assertTrue(false);
 		} catch (SexpParserException e) {
-			Assert.assertTrue(true);
+			Assertions.assertTrue(true);
 		}
 	}
 
@@ -200,7 +200,7 @@ public class SexpTokenizerTest {
 		expectedList.add(new Token("|I'm \\| a symbol|", 1));
 		expectedList.add(new Token(")", 2));
 		List<Token> parsedList = SexpTokenizer.tokenize(input);
-		Assert.assertEquals(expectedList, parsedList);
+		Assertions.assertEquals(expectedList, parsedList);
 	}
 
 	@Test
@@ -209,9 +209,9 @@ public class SexpTokenizerTest {
 		StringReader input = new StringReader(testStr);
 		try {
 			SexpTokenizer.tokenize(input);
-			Assert.assertTrue(false);
+			Assertions.assertTrue(false);
 		} catch (SexpParserException e) {
-			Assert.assertTrue(true);
+			Assertions.assertTrue(true);
 		}
 	}
 

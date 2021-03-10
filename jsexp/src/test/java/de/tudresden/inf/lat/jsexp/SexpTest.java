@@ -24,8 +24,8 @@ package de.tudresden.inf.lat.jsexp;
 import java.io.IOException;
 import java.io.StringReader;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test class for {@link Sexp}.
@@ -49,7 +49,7 @@ public class SexpTest {
 		sexp1.add(SexpFactory.newAtomicSexp("\"hi there\""));
 		Sexp expectedExpression = SexpFactory.newNonAtomicSexp();
 		expectedExpression.add(sexp1);
-		Assert.assertEquals(expectedExpression, parsedExpression);
+		Assertions.assertEquals(expectedExpression, parsedExpression);
 	}
 
 	@Test
@@ -57,9 +57,9 @@ public class SexpTest {
 		String testStr = "";
 		try {
 			SexpFactory.parse(new StringReader(testStr));
-			Assert.assertTrue(false);
+			Assertions.assertTrue(false);
 		} catch (SexpParserException e) {
-			Assert.assertTrue(true);
+			Assertions.assertTrue(true);
 		}
 	}
 
@@ -71,21 +71,21 @@ public class SexpTest {
 		expectedElem03.add(SexpFactory.newAtomicSexp("elem-03-01"));
 		expectedElem03.add(SexpFactory.newAtomicSexp("elem-03-02"));
 		expectedElem03.add(SexpFactory.newAtomicSexp("elem-03-03"));
-		Assert.assertEquals(SexpFactory.newAtomicSexp("elem-01-01"), parsedExpr.get(0).get(0));
-		Assert.assertEquals(SexpFactory.newAtomicSexp("elem-01-02"), parsedExpr.get(0).get(1));
-		Assert.assertEquals(SexpFactory.newAtomicSexp("elem-02"), parsedExpr.get(1));
-		Assert.assertEquals(expectedElem03, parsedExpr.get(2));
+		Assertions.assertEquals(SexpFactory.newAtomicSexp("elem-01-01"), parsedExpr.get(0).get(0));
+		Assertions.assertEquals(SexpFactory.newAtomicSexp("elem-01-02"), parsedExpr.get(0).get(1));
+		Assertions.assertEquals(SexpFactory.newAtomicSexp("elem-02"), parsedExpr.get(1));
+		Assertions.assertEquals(expectedElem03, parsedExpr.get(2));
 		try {
 			parsedExpr.get(3);
-			Assert.assertTrue(false);
+			Assertions.assertTrue(false);
 		} catch (IndexOutOfBoundsException e) {
-			Assert.assertTrue(true);
+			Assertions.assertTrue(true);
 		}
 		try {
 			(SexpFactory.newAtomicSexp("example")).get(0);
-			Assert.assertTrue(false);
+			Assertions.assertTrue(false);
 		} catch (IndexOutOfBoundsException e) {
-			Assert.assertTrue(true);
+			Assertions.assertTrue(true);
 		}
 	}
 
@@ -144,7 +144,7 @@ public class SexpTest {
 				+ "\n        (c-marked x) subsumer) " + "\n      (when " + "\n        (c-classified x) "
 				+ "\n        (mark-ancestors x subsumer)) "
 				+ "\n      (mark-told-subsumers-and-ancestors x subsumer))))";
-		Assert.assertEquals(str, aux.toIndentedString());
+		Assertions.assertEquals(str, aux.toIndentedString());
 	}
 
 	@Test
@@ -152,23 +152,23 @@ public class SexpTest {
 		String testStr = "(( defun test () \"hi there\")( a s ";
 		try {
 			SexpFactory.parse(new StringReader(testStr));
-			Assert.assertTrue(false);
+			Assertions.assertTrue(false);
 		} catch (SexpParserException e) {
-			Assert.assertTrue(true);
+			Assertions.assertTrue(true);
 		}
 		testStr = "(( defun test () \"hi there\")";
 		try {
 			SexpFactory.parse(testStr);
-			Assert.assertTrue(false);
+			Assertions.assertTrue(false);
 		} catch (SexpParserException e) {
-			Assert.assertTrue(true);
+			Assertions.assertTrue(true);
 		}
 		testStr = ") defun test () \"hi there\")";
 		try {
 			SexpFactory.parse(new StringReader(testStr));
-			Assert.assertTrue(false);
+			Assertions.assertTrue(false);
 		} catch (SexpParserException e) {
-			Assert.assertTrue(true);
+			Assertions.assertTrue(true);
 		}
 	}
 
@@ -181,7 +181,7 @@ public class SexpTest {
 		expectedExpression.add(SexpFactory.newAtomicSexp("test"));
 		expectedExpression.add(SexpFactory.newNonAtomicSexp());
 		expectedExpression.add(SexpFactory.newAtomicSexp("\"hi there\""));
-		Assert.assertEquals(expectedExpression, parsedExpression);
+		Assertions.assertEquals(expectedExpression, parsedExpression);
 	}
 
 	@Test
@@ -189,7 +189,7 @@ public class SexpTest {
 		String testStr = "test";
 		Sexp expectedExpr = SexpFactory.newAtomicSexp("test");
 		Sexp parsedExpr = SexpFactory.parse(new StringReader(testStr));
-		Assert.assertEquals(expectedExpr, parsedExpr);
+		Assertions.assertEquals(expectedExpr, parsedExpr);
 	}
 
 }
