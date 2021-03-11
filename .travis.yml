@@ -19,4 +19,7 @@ install:
   - ant
   - cd ..
 
+after_success:
+  - cd jsexp ; mvn clean cobertura:cobertura coveralls:report
+
 
