@@ -1,6 +1,6 @@
 # [jsexp](https://julianmendez.github.io/jsexp)
 
-[![build](https://travis-ci.org/julianmendez/jsexp.png?branch=master)](https://travis-ci.org/julianmendez/jsexp)
+[![build](https://github.com/julianmendez/jsexp/workflows/Java%20CI/badge.svg)](https://github.com/julianmendez/jsexp/actions)
 [![coverage](https://coveralls.io/repos/github/julianmendez/jsexp/badge.svg?branch=master)](https://coveralls.io/github/julianmendez/jsexp?branch=master)
 [![maven central](https://maven-badges.herokuapp.com/maven-central/de.tu-dresden.inf.lat.jsexp/jsexp/badge.svg)](https://search.maven.org/#search|ga|1|g%3A%22de.tu-dresden.inf.lat.jsexp%22)
 [![license](https://img.shields.io/badge/license-LGPL%203.0-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0.txt)
