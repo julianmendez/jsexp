@@ -1,9 +1,15 @@
 target/
+out/
 .settings/
 .gradle/
 .project
 .classpath
 .idea/
+.bsp/
+.lake/
 *.iml
 .DS_Store
 Thumbs.db
+.cache
+.cache-main
+.cache-tests
